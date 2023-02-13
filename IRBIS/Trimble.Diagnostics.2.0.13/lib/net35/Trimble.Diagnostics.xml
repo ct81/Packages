@@ -1,0 +1,622 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Trimble.Diagnostics</name>
+    </assembly>
+    <members>
+        <member name="T:Trimble.Diagnostics.CallerMemberNameAttribute">
+            <summary>
+            Allows you to obtain the method or property name of the caller to the method. 
+            </summary>
+        </member>
+        <member name="T:Trimble.Diagnostics.EtwLogger">
+            <summary>
+            The logger implementation based on <see cref="T:Microsoft.Diagnostics.Tracing.EventSource"/> (ETW).
+            </summary>
+        </member>
+        <member name="M:Trimble.Diagnostics.EtwLogger.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Trimble.Diagnostics.EtwLogger"/> class.
+            </summary>
+            <param name="name">The event source name.</param>
+        </member>
+        <member name="M:Trimble.Diagnostics.EtwLogger.IsEnabled(Trimble.Diagnostics.LogLevel)">
+            <inheritdoc />
+        </member>
+        <member name="M:Trimble.Diagnostics.EtwLogger.Log(Trimble.Diagnostics.LogLevel,System.Func{System.String})">
+            <inheritdoc />
+        </member>
+        <member name="M:Trimble.Diagnostics.EtwLogger.BeginScope(Trimble.Diagnostics.LogLevel,System.Func{System.String})">
+            <inheritdoc />
+        </member>
+        <member name="T:Trimble.Diagnostics.EtwLogger.ActivityScope">
+            <summary>
+            ActivityScope is just a IDisposable that knows how to send the ActivityStop event when it is
+            desposed.  It is part of the BeginScope() support.
+            </summary>
+        </member>
+        <member name="T:Trimble.Diagnostics.EventLogLogger">
+            <summary>
+            The logger that logs messaged to Windows Event Log (as well as to debugging console in DEBUG builds if debugger is attached).
+            Messages are logged to the "Trimble" event source. 
+            Attempts to create the "Trimble" event source automatically, but normally it should be done by the installation program as it requires admin rights.
+            For development purposes developer should run the app once as admin to create an event source.
+            </summary>
+        </member>
+        <member name="F:Trimble.Diagnostics.EventLogLogger.isSourceCreated">
+            <summary>
+            True if event log source is created.
+            </summary>
+        </member>
+        <member name="F:Trimble.Diagnostics.EventLogLogger.source">
+            <summary>
+            The windows event log source name.
+            </summary>
+        </member>
+        <member name="M:Trimble.Diagnostics.EventLogLogger.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Trimble.Diagnostics.EventLogLogger"/> class.
+            </summary>
+        </member>
+        <member name="T:Trimble.Diagnostics.EventLogLogger.WriteEntryEventHandler">
+            <summary>
+            Delegate declaration for the event log events.
+            </summary>
+            <param name="level">The logging level.</param>
+            <param name="message">The log message.</param>
+        </member>
+        <member name="E:Trimble.Diagnostics.EventLogLogger.OnWriteEntry">
+            <summary>
+            Event to listen on logging events.
+            </summary>
+        </member>
+        <member name="P:Trimble.Diagnostics.EventLogLogger.Level">
+            <summary>
+            Gets or sets the logging level.
+            </summary>
+            <value>The logging level.</value>
+            <remarks>The default is <see cref="F:Trimble.Diagnostics.LogLevel.Critical"/>.</remarks>
+        </member>
+        <member name="P:Trimble.Diagnostics.EventLogLogger.BreakWithDebuggerOnError">
+            <summary>
+            Gets or sets a value indicating whether to break if debugger is attached in case of error message.
+            </summary>
+            <value>True if break is requested.</value>
+        </member>
+        <member name="P:Trimble.Diagnostics.EventLogLogger.Source">
+            <summary>
+            Gets or sets the Event Log source.
+            </summary>
+            <value>The source.</value>
+        </member>
+        <member name="M:Trimble.Diagnostics.EventLogLogger.IsEnabled(Trimble.Diagnostics.LogLevel)">
+            <inheritdoc />
+        </member>
+        <member name="M:Trimble.Diagnostics.EventLogLogger.Log(Trimble.Diagnostics.LogLevel,System.Func{System.String})">
+            <inheritdoc />
+        </member>
+        <member name="M:Trimble.Diagnostics.EventLogLogger.BeginScope(Trimble.Diagnostics.LogLevel,System.Func{System.String})">
+            <inheritdoc />
+        </member>
+        <member name="T:Trimble.Diagnostics.ILogger">
+            <summary>
+            The logger interface.
+            </summary>
+        </member>
+        <member name="M:Trimble.Diagnostics.ILogger.IsEnabled(Trimble.Diagnostics.LogLevel)">
+            <summary>
+            Checks if the given <paramref name="level"/> is enabled.
+            </summary>
+            <param name="level">The level to be checked.</param>
+            <returns><c>true</c> if enabled.</returns>
+        </member>
+        <member name="M:Trimble.Diagnostics.ILogger.Log(Trimble.Diagnostics.LogLevel,System.Func{System.String})">
+            <summary>
+            Writes a log entry.
+            </summary>
+            <param name="level">The entry will be written on this level.</param>
+            <param name="formatter">Function to create a <c>string</c> message. Called only if log message to be written based on the <paramref name="level"/>.</param>
+        </member>
+        <member name="M:Trimble.Diagnostics.ILogger.BeginScope(Trimble.Diagnostics.LogLevel,System.Func{System.String})">
+            <summary>
+            Begins a logical operation scope.
+            </summary>
+            <param name="level">The entry will be written on this level.</param>
+            <param name="formatter">Function to create a <c>string</c> message. Called only if log message to be written based on the <paramref name="level"/>.</param>
+            <returns>An <see cref="T:System.IDisposable"/> that ends the logical operation scope on dispose.</returns>
+        </member>
+        <member name="T:Trimble.Diagnostics.ILoggerFactory">
+            <summary>
+            Factory to create instances of <see cref="T:Trimble.Diagnostics.ILogger"/>.
+            </summary>
+        </member>
+        <member name="M:Trimble.Diagnostics.ILoggerFactory.CreateLogger(System.String)">
+            <summary>
+            Creates a new <see cref="T:Trimble.Diagnostics.ILogger"/> instance.
+            </summary>
+            <param name="name">The event source name.</param>
+            <returns>The <see cref="T:Trimble.Diagnostics.ILogger"/>.</returns>
+        </member>
+        <member name="T:Trimble.Diagnostics.Logger">
+            <summary>
+            The code tracing logger.
+            </summary>
+        </member>
+        <member name="F:Trimble.Diagnostics.Logger.traceSource">
+            <summary>
+            The trace source.
+            </summary>
+        </member>
+        <member name="F:Trimble.Diagnostics.Logger.enabled">
+            <summary>
+            The flag whether logging is enabled.
+            </summary>
+        </member>
+        <member name="F:Trimble.Diagnostics.Logger.appDomainShutdown">
+            <summary>
+            The flag whether app domain is shut down.
+            </summary>
+        </member>
+        <member name="M:Trimble.Diagnostics.Logger.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Trimble.Diagnostics.Logger"/> class.
+            </summary>
+            <param name="name">The trace source name.</param>
+        </member>
+        <member name="P:Trimble.Diagnostics.Logger.On">
+            <summary>
+            Gets a value indicating whether logging is on.
+            </summary>
+            <value>The true if logging is on.</value>
+        </member>
+        <member name="M:Trimble.Diagnostics.Logger.IsVerbose">
+            <summary>
+            Gets the value indicating verbose logging is enabled.
+            </summary>
+            <returns>The true if verbose logging is enabled.</returns>
+        </member>
+        <member name="M:Trimble.Diagnostics.Logger.Enter(System.Object,System.Object,System.String)">
+            <summary>
+            Logs entrance to a instance method.
+            </summary>
+            <param name="obj">The object instance.</param>
+            <param name="parametersObject">The parameter object.</param>
+            <param name="method">The optional method name.</param>
+            <remarks>
+            Use this method for logging from instance methods. For logging from static methods use <see cref="M:Trimble.Diagnostics.Logger.Enter(System.Type,System.Object,System.String)"/> overload.
+            </remarks>
+        </member>
+        <member name="M:Trimble.Diagnostics.Logger.Enter(System.Type,System.Object,System.String)">
+            <summary>
+            Logs entrance to a instance method.
+            </summary>
+            <param name="type">The object type.</param>
+            <param name="parametersObject">The parameter object.</param>
+            <param name="method">The optional method name.</param>
+            <remarks>
+            Use this method for logging from static methods. For logging from instance methods use <see cref="M:Trimble.Diagnostics.Logger.Enter(System.Object,System.Object,System.String)"/> overload.
+            </remarks>
+        </member>
+        <member name="M:Trimble.Diagnostics.Logger.Enter(System.Object,System.String,System.String)">
+            <summary>
+            Logs entrance to a instance method.
+            </summary>
+            <param name="obj">The object instance.</param>
+            <param name="msg">The message.</param>
+            <param name="method">The optional method name.</param>
+            <remarks>
+            Use this method for logging from instance methods. For logging from static methods use <see cref="M:Trimble.Diagnostics.Logger.Enter(System.Type,System.String,System.String)"/> overload.
+            </remarks>
+        </member>
+        <member name="M:Trimble.Diagnostics.Logger.Enter(System.Type,System.String,System.String)">
+            <summary>
+            Logs entrance to a instance method.
+            </summary>
+            <param name="type">The object type.</param>
+            <param name="msg">The message.</param>
+            <param name="method">The optional method name.</param>
+            <remarks>
+            Use this method for logging from static methods. For logging from instance methods use <see cref="M:Trimble.Diagnostics.Logger.Enter(System.Object,System.String,System.String)"/> overload.
+            </remarks>
+        </member>
+        <member name="M:Trimble.Diagnostics.Logger.Exit(System.Object,System.Object,System.String)">
+            <summary>
+            Logs exit from a instance method.
+            </summary>
+            <param name="obj">The object instance.</param>
+            <param name="retObject">The return value.</param>
+            <param name="method">The optional method name.</param>
+            <remarks>
+            Use this method for logging from instance methods. For logging from static methods use <see cref="M:Trimble.Diagnostics.Logger.Exit(System.Type,System.Object,System.String)"/> overload.
+            </remarks>
+        </member>
+        <member name="M:Trimble.Diagnostics.Logger.Exit(System.Type,System.Object,System.String)">
+            <summary>
+            Logs exit from a static method.
+            </summary>
+            <param name="type">The object type.</param>
+            <param name="retObject">The return value.</param>
+            <param name="method">The optional method name.</param>
+            <remarks>
+            Use this method for logging from static methods. For logging from instance methods use <see cref="M:Trimble.Diagnostics.Logger.Exit(System.Type,System.Object,System.String)"/> overload.
+            </remarks>
+        </member>
+        <member name="M:Trimble.Diagnostics.Logger.Info(System.Object,System.String,System.String)">
+            <summary>
+            Logs an Info line from instance method.
+            </summary>
+            <param name="obj">The object instance.</param>
+            <param name="msg">The message.</param>
+            <param name="method">The optional method name.</param>
+            <remarks>
+            Use this method for logging from instance methods. For logging from static methods use <see cref="M:Trimble.Diagnostics.Logger.Info(System.Type,System.String,System.String)"/> overload.
+            </remarks>
+        </member>
+        <member name="M:Trimble.Diagnostics.Logger.Info(System.Type,System.String,System.String)">
+            <summary>
+            Logs an Info line from static method.
+            </summary>
+            <param name="type">The object type.</param>
+            <param name="msg">The message.</param>
+            <param name="method">The optional method name.</param>
+            <remarks>
+            Use this method for logging from static methods. For logging from instance methods use <see cref="M:Trimble.Diagnostics.Logger.Info(System.Object,System.String,System.String)"/> overload.
+            </remarks>
+        </member>
+        <member name="M:Trimble.Diagnostics.Logger.Warning(System.Object,System.String,System.Exception,System.String)">
+            <summary>
+            Logs an Warning line from instance method.
+            </summary>
+            <param name="obj">The object instance.</param>
+            <param name="msg">The message.</param>
+            <param name="e">The optional exception.</param>
+            <param name="method">The optional method name.</param>
+            <remarks>
+            Use this method for logging from instance methods. For logging from static methods use <see cref="M:Trimble.Diagnostics.Logger.Warning(System.Type,System.String,System.Exception,System.String)"/> overload.
+            </remarks>
+        </member>
+        <member name="M:Trimble.Diagnostics.Logger.Warning(System.Type,System.String,System.Exception,System.String)">
+            <summary>
+            Logs an Warning line from static method.
+            </summary>
+            <param name="type">The object type.</param>
+            <param name="msg">The message.</param>
+            <param name="e">The optional exception.</param>
+            <param name="method">The optional method name.</param>
+            <remarks>
+            Use this method for logging from static methods. For logging from instance methods use <see cref="M:Trimble.Diagnostics.Logger.Warning(System.Object,System.String,System.Exception,System.String)"/> overload.
+            </remarks>
+        </member>
+        <member name="M:Trimble.Diagnostics.Logger.Error(System.Object,System.String,System.Exception,System.String)">
+            <summary>
+            Logs an Error line from instance method.
+            </summary>
+            <param name="obj">The object instance.</param>
+            <param name="msg">The message.</param>
+            <param name="e">The optional exception.</param>
+            <param name="method">The optional method name.</param>
+        </member>
+        <member name="M:Trimble.Diagnostics.Logger.Error(System.Type,System.String,System.Exception,System.String)">
+            <summary>
+            Logs an Error line from static method.
+            </summary>
+            <param name="type">The object type.</param>
+            <param name="msg">The message.</param>
+            <param name="e">The optional exception.</param>
+            <param name="method">The optional method name.</param>
+        </member>
+        <member name="M:Trimble.Diagnostics.Logger.Initialize(System.String)">
+            <summary>
+            Sets up internal config settings for logging.
+            </summary>
+            <param name="name">The trace source name.</param>
+        </member>
+        <member name="M:Trimble.Diagnostics.Logger.Close">
+            <summary>
+            Closes the tracing source.
+            </summary>
+        </member>
+        <member name="M:Trimble.Diagnostics.Logger.UnhandledExceptionHandler(System.Object,System.UnhandledExceptionEventArgs)">
+            <summary>
+            Logs any unhandled exception through this event handler.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="args">The argument.</param>
+        </member>
+        <member name="M:Trimble.Diagnostics.Logger.ProcessExitEvent(System.Object,System.EventArgs)">
+            <summary>
+            Handler for the process exit event.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The argument.</param>
+        </member>
+        <member name="M:Trimble.Diagnostics.Logger.AppDomainUnloadEvent(System.Object,System.EventArgs)">
+            <summary>
+            Called when the system is shutting down, used to prevent additional logging post-shutdown.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The arguments.</param>
+        </member>
+        <member name="M:Trimble.Diagnostics.Logger.ValidateSettings(System.Diagnostics.TraceEventType)">
+            <summary>
+            Confirms logging is enabled, given current logging settings.
+            </summary>
+            <param name="traceLevel">The trace level.</param>
+            <returns>True if logging on this level is enabled.</returns>
+        </member>
+        <member name="M:Trimble.Diagnostics.Logger.PrintLine(System.Diagnostics.TraceEventType,System.Int32,System.String)">
+            <summary>
+            Prints the message.
+            </summary>
+            <param name="eventType">The event type.</param>
+            <param name="id">The thread identifier.</param>
+            <param name="msg">The message.</param>
+        </member>
+        <member name="T:Trimble.Diagnostics.LoggerFactory">
+            <summary>
+            The logger factory implementation.
+            </summary>
+        </member>
+        <member name="M:Trimble.Diagnostics.LoggerFactory.CreateLogger(System.String)">
+            <summary>
+            Creates a new <see cref="T:Trimble.Diagnostics.ILogger"/> instance.
+            </summary>
+            <param name="name">The event source name.</param>
+            <returns>The <see cref="T:Trimble.Diagnostics.ILogger"/>.</returns>
+        </member>
+        <member name="T:Trimble.Diagnostics.LoggingEventSource">
+            <summary>
+            The logger helper.
+            </summary>
+        </member>
+        <member name="F:Trimble.Diagnostics.LoggingEventSource.Instance">
+            <summary>
+             The singleton.
+            </summary>
+        </member>
+        <member name="T:Trimble.Diagnostics.LogLevel">
+            <summary>
+            Defines logging severity levels.
+            </summary>
+        </member>
+        <member name="F:Trimble.Diagnostics.LogLevel.Trace">
+            <summary>
+            Logs that contain the most detailed messages. These messages may contain sensitive application data.
+            These messages are disabled by default and should never be enabled in a production environment.
+            </summary>
+        </member>
+        <member name="F:Trimble.Diagnostics.LogLevel.Debug">
+            <summary>
+            Logs that are used for interactive investigation during development.  These logs should primarily contain
+            information useful for debugging and have no long-term value.
+            </summary>
+        </member>
+        <member name="F:Trimble.Diagnostics.LogLevel.Information">
+            <summary>
+            Logs that track the general flow of the application. These logs should have long-term value.
+            </summary>
+        </member>
+        <member name="F:Trimble.Diagnostics.LogLevel.Warning">
+            <summary>
+            Logs that highlight an abnormal or unexpected event in the application flow, but do not otherwise cause the
+            application execution to stop.
+            </summary>
+        </member>
+        <member name="F:Trimble.Diagnostics.LogLevel.Error">
+            <summary>
+            Logs that highlight when the current flow of execution is stopped due to a failure. These should indicate a
+            failure in the current activity, not an application-wide failure.
+            </summary>
+        </member>
+        <member name="F:Trimble.Diagnostics.LogLevel.Critical">
+            <summary>
+            Logs that describe an unrecoverable application or system crash, or a catastrophic failure that requires
+            immediate attention.
+            </summary>
+        </member>
+        <member name="T:Trimble.Diagnostics.MessageFormatter">
+            <summary>
+            The tools for formatting log output.
+            </summary>
+        </member>
+        <member name="M:Trimble.Diagnostics.MessageFormatter.HashString(System.Object)">
+            <summary>
+            Generate a normalized string that can be printed for the object.
+            </summary>
+            <param name="obj">The object.</param>
+            <returns>The normalized string.</returns>
+        </member>
+        <member name="M:Trimble.Diagnostics.MessageFormatter.GetObjectName(System.Object)">
+            <summary>
+            Converts an object to a normalized string that can be printed.
+            </summary>
+            <param name="obj">The object.</param>
+            <returns>The normalized string that can be printed.</returns>
+        </member>
+        <member name="M:Trimble.Diagnostics.MessageFormatter.FormatMethodCall(System.Object,System.String,System.Object[])">
+            <summary>
+            Formats string for the instance method invokation.
+            </summary>
+            <param name="obj">The object instance.</param>
+            <param name="method">The method name.</param>
+            <param name="parameters">The parameters.</param>
+        </member>
+        <member name="M:Trimble.Diagnostics.MessageFormatter.FormatMethodCall(System.Type,System.String,System.Object[])">
+            <summary>
+            Formats string for the static method invokation.
+            </summary>
+            <param name="type">The object type.</param>
+            <param name="parameters">The parameter object.</param>
+            <param name="method">The optional method name.</param>
+        </member>
+        <member name="T:Trimble.Diagnostics.NoopDisposable">
+            <summary>
+            Noop disposable.
+            </summary>
+        </member>
+        <member name="M:Trimble.Diagnostics.NoopDisposable.#ctor">
+            <summary>
+            Prevents a default instance of the <see cref="T:Trimble.Diagnostics.NoopDisposable"/> class from being created.
+            </summary>
+        </member>
+        <member name="F:Trimble.Diagnostics.NoopDisposable.Instance">
+            <summary>
+            Gets the singleton.
+            </summary>
+            <value>The instance.</value>
+        </member>
+        <member name="M:Trimble.Diagnostics.NoopDisposable.Dispose">
+            <inheritdoc />
+        </member>
+        <member name="T:Trimble.Diagnostics.NullLogger">
+            <summary>
+            The logger that does nothing.
+            </summary>
+        </member>
+        <member name="P:Trimble.Diagnostics.NullLogger.Instance">
+            <summary>
+            The singleton.
+            </summary>
+        </member>
+        <member name="M:Trimble.Diagnostics.NullLogger.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Trimble.Diagnostics.NullLogger"/> class.
+            </summary>
+        </member>
+        <member name="M:Trimble.Diagnostics.NullLogger.IsEnabled(Trimble.Diagnostics.LogLevel)">
+            <inheritdoc />
+        </member>
+        <member name="M:Trimble.Diagnostics.NullLogger.Log(Trimble.Diagnostics.LogLevel,System.Func{System.String})">
+            <inheritdoc />
+        </member>
+        <member name="M:Trimble.Diagnostics.NullLogger.BeginScope(Trimble.Diagnostics.LogLevel,System.Func{System.String})">
+            <inheritdoc />
+        </member>
+        <member name="T:Trimble.Diagnostics.PerformanceScope">
+            <summary>
+            An <see cref="T:System.IDisposable"/> that tracks operation time.
+            It will print two message to the log in the begining (prefixed with "Begin - ") and 
+            by the end (prefixed with "End - ") of operation scope with the time operation took.
+            </summary>
+        </member>
+        <member name="F:Trimble.Diagnostics.PerformanceScope.logger">
+            <summary>
+            The logger.
+            </summary>
+        </member>
+        <member name="F:Trimble.Diagnostics.PerformanceScope.level">
+            <summary>
+            The log level.
+            </summary>
+        </member>
+        <member name="F:Trimble.Diagnostics.PerformanceScope.message">
+            <summary>
+            The message.
+            </summary>
+        </member>
+        <member name="F:Trimble.Diagnostics.PerformanceScope.stopwatch">
+            <summary>
+            The message.
+            </summary>
+        </member>
+        <member name="M:Trimble.Diagnostics.PerformanceScope.#ctor(Trimble.Diagnostics.ILogger,Trimble.Diagnostics.LogLevel,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Trimble.Diagnostics.PerformanceScope"/> class.
+            </summary>
+            <param name="logger">The logger.</param>
+            <param name="level">The logging level.</param>
+            <param name="message">The log message.</param>
+        </member>
+        <member name="M:Trimble.Diagnostics.PerformanceScope.Dispose">
+            <summary>
+            The dispose.
+            </summary>
+        </member>
+        <member name="T:Trimble.Diagnostics.TraceSourceLogger">
+            <summary>
+            The logger implementation based on <see cref="T:System.Diagnostics.TraceSource"/>.
+            </summary>
+        </member>
+        <member name="F:Trimble.Diagnostics.TraceSourceLogger.traceSource">
+            <summary>
+            The trace source.
+            </summary>
+        </member>
+        <member name="F:Trimble.Diagnostics.TraceSourceLogger.eventId">
+            <summary>
+            The running event id;
+            </summary>
+        </member>
+        <member name="M:Trimble.Diagnostics.TraceSourceLogger.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Trimble.Diagnostics.TraceSourceLogger"/> class.
+            </summary>
+            <param name="name">The event source name.</param>
+        </member>
+        <member name="P:Trimble.Diagnostics.TraceSourceLogger.Switch">
+            <summary>
+            Gets a switch that allow to configure level of code tracing.
+            </summary>
+            <value>The switch.</value>
+        </member>
+        <member name="M:Trimble.Diagnostics.TraceSourceLogger.IsEnabled(Trimble.Diagnostics.LogLevel)">
+            <inheritdoc />
+        </member>
+        <member name="M:Trimble.Diagnostics.TraceSourceLogger.Log(Trimble.Diagnostics.LogLevel,System.Func{System.String})">
+            <inheritdoc />
+        </member>
+        <member name="M:Trimble.Diagnostics.TraceSourceLogger.BeginScope(Trimble.Diagnostics.LogLevel,System.Func{System.String})">
+            <inheritdoc />
+        </member>
+        <member name="M:Trimble.Diagnostics.TraceSourceLogger.Initialize(System.String)">
+            <summary>
+            Sets up internal config settings for logging.
+            </summary>
+            <param name="name">The trace source name.</param>
+        </member>
+        <member name="M:Trimble.Diagnostics.TraceSourceLogger.Close">
+            <summary>
+            Closes the tracing source.
+            </summary>
+        </member>
+        <member name="M:Trimble.Diagnostics.TraceSourceLogger.UnhandledExceptionHandler(System.Object,System.UnhandledExceptionEventArgs)">
+            <summary>
+            Logs any unhandled exception through this event handler.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="args">The argument.</param>
+        </member>
+        <member name="M:Trimble.Diagnostics.TraceSourceLogger.ProcessExitEvent(System.Object,System.EventArgs)">
+            <summary>
+            Handler for the process exit event.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The argument.</param>
+        </member>
+        <member name="M:Trimble.Diagnostics.TraceSourceLogger.AppDomainUnloadEvent(System.Object,System.EventArgs)">
+            <summary>
+            Called when the system is shutting down, used to prevent additional logging post-shutdown.
+            </summary>
+            <param name="sender">The sender.</param>
+            <param name="e">The arguments.</param>
+        </member>
+        <member name="T:Trimble.Diagnostics.TraceSourceLogger.TraceSourceScope">
+            <summary>
+            Provides an <see cref="T:System.IDisposable"/> that represents a logical operation scope based on Trace.CorrelationManager.
+            </summary>
+        </member>
+        <member name="M:Trimble.Diagnostics.TraceSourceLogger.TraceSourceScope.#ctor(System.Diagnostics.TraceSource,Trimble.Diagnostics.LogLevel,System.Object)">
+            <summary>
+            Pushes state onto the LogicalOperationStack.
+            </summary>
+            <param name="traceSource">The trace source.</param>
+            <param name="level">The level.</param>
+            <param name="operationId">The operation Id.</param>
+        </member>
+        <member name="M:Trimble.Diagnostics.TraceSourceLogger.TraceSourceScope.Dispose">
+            <summary>
+            Pops a state off the LogicalOperationStack.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,2197 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Trimble.Connect.Client.Common</name>
+    </assembly>
+    <members>
+        <member name="T:Trimble.Connect.Client.Common.ApplicationStorage">
+            <summary>
+            An implementation of the <see cref="T:Trimble.Connect.Client.Common.IApplicationStorage"/> interface for the .NET Platform.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.ApplicationStorage.Default">
+            <summary>
+            A singleton instance of the <see cref="T:Trimble.Connect.Client.Common.ApplicationStorage"/>.
+            </summary>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.ApplicationStorage.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Trimble.Connect.Client.Common.ApplicationStorage"/> class.
+            </summary>
+            <param name="name">The prefix for the configuration file name.</param>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.ApplicationStorage.#ctor">
+            <summary>
+            Prevents a default instance of the <see cref="T:Trimble.Connect.Client.Common.ApplicationStorage"/> class from being created.
+            </summary>
+        </member>
+        <member name="P:Trimble.Connect.Client.Common.ApplicationStorage.Instance">
+            <summary>
+            Gets the singleton instance of the <see cref="T:Trimble.Connect.Client.Common.ApplicationStorage"/>.
+            </summary>
+        </member>
+        <member name="P:Trimble.Connect.Client.Common.ApplicationStorage.StoragePrefix">
+            <summary>
+            Gets or sets a value for the configuration file name prefix.
+            </summary>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.ApplicationStorage.Trimble#Connect#Client#Common#IApplicationStorage#TryReadSetting(System.String,System.String@)">
+            <inheritdoc />
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.ApplicationStorage.Trimble#Connect#Client#Common#IApplicationStorage#WriteSetting(System.String,System.String)">
+            <inheritdoc />
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.ApplicationStorage.Save">
+            <inheritdoc />
+        </member>
+        <member name="T:Trimble.Connect.Client.Common.IApplicationStorage">
+            <summary>
+            An interface to access settings in application storage.
+            </summary>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.IApplicationStorage.TryReadSetting(System.String,System.String@)">
+            <summary>
+            Tries to read a setting's value from application storage. 
+            </summary>
+            <param name="name">
+            The name of the setting to try to read.
+            </param>
+            <param name="value">
+            Upon returning, if the return value was <c>true</c>, will be the value
+            of the given setting; will be <c>null</c> otherwise.
+            </param>
+            <returns>
+            <c>true</c> if the setting existed and was successfully read; 
+            <c>false</c> otherwise.
+            </returns>
+            <exception cref="T:System.ArgumentException">
+            Thrown if the <paramref name="name"/> is <c>null</c> or an empty string.
+            </exception>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.IApplicationStorage.WriteSetting(System.String,System.String)">
+            <summary>
+            Writes the setting's value to application storage.
+            </summary>
+            <param name="name">
+            The name of the setting to write.
+            </param>
+            <param name="value">
+            The value to write.
+            </param>
+            <exception cref="T:System.ArgumentException">
+            Thrown if the setting name is <c>null</c> or empty.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+            Thrown if an error occurs while writing the setting.
+            </exception>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.IApplicationStorage.Save">
+            <summary>
+            Force the ApplicationStorage to save any state that is still in memory.
+            </summary>
+        </member>
+        <member name="T:Trimble.Connect.Client.Common.Client.RegionsClientConfig">
+            <summary>
+            The Regions Client Configuration.
+            </summary>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Client.RegionsClientConfig.GetServiceURIForRegion(System.String)">
+            <summary>
+            This method is not used.
+            </summary>
+            <param name="region">The region name.</param>
+            <returns>The region URI.</returns>
+        </member>
+        <member name="T:Trimble.Connect.Client.Common.RegionsConfig">
+            <summary>
+            Global regions configuration.
+            </summary>
+        </member>
+        <member name="P:Trimble.Connect.Client.Common.RegionsConfig.RegionsUri">
+            <summary>
+            Gets or sets the Trimble connect regions URI.
+            </summary>
+            <value>The TC Regions URI.</value>
+        </member>
+        <member name="P:Trimble.Connect.Client.Common.RegionsConfig.Regions">
+            <summary>
+            Gets or sets the collection of regions.
+            </summary>
+            <value>The collection of regions.</value>
+            <remarks>
+            Use <see cref="M:Trimble.Connect.Client.Common.RegionsConfig.InitializeFromServerAsync(Trimble.Connect.Client.ICredentialsProvider,System.Threading.CancellationToken)"/> to initialize this mapping automatically from the server or you could initialize it directly.
+            </remarks>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.RegionsConfig.InitializeFromServerAsync(Trimble.Connect.Client.ICredentialsProvider,System.Threading.CancellationToken)">
+            <summary>
+            Initializes the regions table from the Trimble Connect master server and initialize a <see cref="P:Trimble.Connect.Client.Common.RegionsConfig.Regions"/> property.
+            </summary>
+            <param name="creds">The credentials provider.</param>
+            <param name="cancellationToken">The optional cancellation token.</param>
+            <returns>The task.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.RegionsConfig.GetRegionsAsync(Trimble.Connect.Client.ICredentialsProvider,System.Threading.CancellationToken)">
+            <summary>
+            Get a list of regions (PODs) configurations for the Trimble Connect deployment.
+            </summary>
+            <param name="creds">The credentials provider.</param>
+            <param name="cancellationToken">The optional cancellation token.</param>
+            <returns>The collection of PODs configurations.</returns>
+        </member>
+        <member name="T:Trimble.Connect.Client.Common.Resources">
+            <summary>
+            Resource strings.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.Resources.ErrorMessageUnknown">
+            <summary>
+            The unknown error happened.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.Resources.ResponseNotSupportedFormat">
+            <summary>
+            The error message for the response in a not supported format.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.Resources.TrimbleConnectClientNoResponseContent">
+            <summary>
+            The error message for missed response content.
+            </summary>
+        </member>
+        <member name="T:Trimble.Connect.Client.Common.AutoRetrier">
+            <summary>
+            Class that facilitates retrying operations. It implements automatic retry with exponential backoff and jitter.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.AutoRetrier.JitterGenerator">
+            <summary>
+            The random number generator used to achieve jitter.
+            </summary>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.AutoRetrier.ExecuteAsync``1(System.Func{System.Threading.Tasks.Task{``0}},Trimble.Connect.Client.IRetryConfig,System.Threading.CancellationToken)">
+            <summary>
+            Execute the function with automatic retry (with exponential backoff and jitter).
+            </summary>
+            <typeparam name="T">The result type.</typeparam>
+            <param name="func">The function to execute.
+            The first argument of the function is an action, which the function may call to set a custom delay for the next retry.</param>
+            <param name="config">The retry configuration.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The resource returned by the task.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown when a required input argument is null.</exception>
+            <exception cref="T:System.OperationCanceledException">Thrown when cancellation was requested.</exception>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.AutoRetrier.CalculateDelay(System.UInt32,Trimble.Connect.Client.IRetryConfig)">
+            <summary>
+            Calculates the delay value for the current retry attempt. Increase is exponential and with jitter.
+            </summary>
+            <param name="retryNumber">The number of the current retry attempt (indexed from 1 - first retry is retry #1).</param>
+            <param name="config">The retry configuration.</param>
+            <returns>The calculated delay value for the current retry attempt.</returns>
+        </member>
+        <member name="T:Trimble.Connect.Client.Common.Installation">
+            <summary>
+            The installation helpers.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.Installation.InstallationConfigPath">
+            <summary>
+            Name of the config setting that stores the installation ID.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.Installation.InstallationIdKey">
+            <summary>
+            Name of the JSON member in the config setting that stores the installation ID.
+            </summary>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Installation.GetApplicationInstallationId">
+            <summary>
+            Gets the ID used to identify this installation of the application to provide telemetry data.  
+            It will either be retrieved from local settings or generated fresh.
+            </summary>
+            <returns>
+            The installation ID.
+            </returns>
+        </member>
+        <member name="T:Trimble.Connect.Client.Common.NDJsonSerializer">
+            <summary>
+            Serializes and deserializes objects into and from the NDJSON format.
+            </summary>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.NDJsonSerializer.#ctor(Newtonsoft.Json.JsonSerializerSettings)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Trimble.Connect.Client.Common.NDJsonSerializer"/> class with a specified error code.
+            </summary>
+            <param name="settings">The serialization settings.</param>
+        </member>
+        <member name="P:Trimble.Connect.Client.Common.NDJsonSerializer.Settings">
+            <summary>
+            Gets the serialization settings.
+            </summary>
+            <value>The settings.</value>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.NDJsonSerializer.Serialize``1(System.IO.TextWriter,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Serialize NDJSON content to a stream.
+            </summary>
+            <typeparam name="ObjectType">The type of the content objects.</typeparam>
+            <param name="writer">The text writer.</param>
+            <param name="items">The collection of objects.</param>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.NDJsonSerializer.Deserialize``1(System.IO.TextReader,System.Action{System.Collections.Generic.ICollection{``0}},System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Deserialize NDJSON content from a stream.
+            </summary>
+            <typeparam name="ObjectType">The type of the content objects.</typeparam>
+            <param name="reader">The reader.</param>
+            <param name="chunkHandler">A handler function which is called for each deserialized chunk of content.</param>
+            <param name="maxObjectCountInChunk">The maximum number of content objects to deserialize in a single chunk. Default is 200.</param>
+            <param name="cancellationToken">The optional cancellation token.</param>
+        </member>
+        <member name="T:Trimble.Connect.Client.Common.PlatformInformation">
+            <summary>
+            The platform specific helpers.
+            </summary>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.PlatformInformation.GetApplicationIdHeader">
+            <summary>
+            Gets the ID used to identify the application to provide telemetry data.  
+            </summary>
+            <returns>
+            The app ID.
+            </returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.PlatformInformation.GetFrameworkVersion">
+            <summary>
+            Get file version for System.dll library.
+            </summary>
+            <returns>The file version.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.PlatformInformation.GetClientVersion(System.Type)">
+            <summary>
+            Returns the client version from the assembly information.
+            </summary>
+            <param name="clientType">The client class type. Default value is typeof(PlatformInformation).</param>
+            <returns>The version.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.PlatformInformation.GetOSName">
+            <summary>
+            Returns the operating system name.
+            </summary>
+            <returns>The OS name.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.PlatformInformation.GetOSVersion">
+            <summary>
+            Returns operating system the version.
+            </summary>
+            <returns>The OS version.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.PlatformInformation.GetArch">
+            <summary>
+            Returns system architecture.
+            </summary>
+            <returns>The architecture.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.PlatformInformation.GetVersion(System.Reflection.Assembly)">
+            <summary>
+            Gets the <see cref="T:System.Reflection.AssemblyInformationalVersionAttribute"/> if available
+            if not it gets the <see cref="T:System.Reflection.AssemblyVersionAttribute"/>
+            if not it gets the <see cref="T:System.Reflection.AssemblyInformationalVersionAttribute"/>
+            if neither are available it will default to the Assembly Version.
+            </summary>
+            <param name="assembly">The assembly to extract information from.</param>
+            <returns>The version.</returns>
+        </member>
+        <member name="T:Trimble.Connect.Client.Common.UriUtils">
+            <summary>
+            The uri utilities.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.UriUtils.UriPathDelimiter">
+            <summary>
+            A constant variable that defines the character '/'.
+            </summary>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.UriUtils.CanonicalizeUri(System.String)">
+            <summary>
+            Makes sure that Uri ends with '/'.
+            </summary>
+            <param name="uri">The Uri.</param>
+            <returns>The canonical Uri.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.UriUtils.CanonicalizeUri(System.Uri)">
+            <summary>
+            Makes sure that Uri ends with '/'.
+            </summary>
+            <param name="uri">The Uri.</param>
+            <returns>The canonical Uri.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.UriUtils.GetQueryString(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.String}})">
+            <summary>
+            Converts a dictionary of string key-value pairs into a URI query string.
+            </summary>
+            <remarks>
+            Both the query parameter and value will be percent encoded before being added to the query string.
+            </remarks>
+            <param name="parameters">
+            The parameters from which to create the query string.
+            </param>
+            <returns>
+            A URI query string. Empty string if <paramref name="parameters"/> are null or empty.
+            </returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.UriUtils.AppendQuery(System.String,System.String)">
+            <summary>
+            Appends additional query parameters to the URI path.
+            </summary>
+            <param name="path">The URI path.</param>
+            <param name="queryString">The query string.</param>
+            <returns>
+            The concatenated URI path and query string.
+            </returns>
+        </member>
+        <member name="T:Trimble.Connect.Client.Common.Http.Constants">
+            <summary>
+            The HTTP constants.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.Http.Constants.PatchHTTPMethod">
+            <summary>
+            The PATCH HTTP method.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.Http.Constants.JsonContentType">
+            <summary>
+            The JSON content type.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.Http.Constants.NDJsonContentType">
+            <summary>
+            The NDJSON content type.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.Http.Constants.DefaultUploadBufferSize">
+            <summary>
+            The upload buffer size.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.Http.Constants.DefaultDownloadBufferSize">
+            <summary>
+            The download buffer size.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.Http.Constants.SkipAuthorization">
+            <summary>
+            The property key to be added to the request to skip authorization.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.Http.Constants.Infinite">
+            <summary>
+            The infinite period of time.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.Http.Constants.DefaultFileTransferTimeout">
+            <summary>
+            The default timeout value for waiting 1 byte transferred either to or from server.
+            </summary>
+        </member>
+        <member name="T:Trimble.Connect.Client.Common.Http.HttpRequestBuilder">
+            <summary>
+            The request builder.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.Http.HttpRequestBuilder.ClientTokenHeader">
+            <summary>
+            Name of the client token header.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.Http.HttpRequestBuilder.client">
+            <summary>
+            The http client.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.Http.HttpRequestBuilder.request">
+            <summary>
+            The request.
+            </summary>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.HttpRequestBuilder.#ctor(System.Net.Http.HttpClient,System.Net.Http.HttpMethod,System.Uri)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Trimble.Connect.Client.Common.Http.HttpRequestBuilder"/> class.
+            </summary>
+            <param name="client">The client.</param>
+            <param name="method">The HTTP method of the request.</param>
+            <param name="requestUri">The absolute URI to send request to.</param>
+            <remarks>This <see cref="T:Trimble.Connect.Client.Common.Http.HttpRequestBuilder"/> instance is meant to be used to build and send a single request, cannot be re-used to send multiple requests.</remarks>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.HttpRequestBuilder.WithAuthBearer(System.String)">
+            <summary>
+            Send request on behalf of the user.
+            </summary>
+            <param name="accessToken">
+            The authentication token of the user.
+            </param>
+            <returns>The request builder object.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.HttpRequestBuilder.AcceptJson">
+            <summary>
+            Configure request to ask for the JSON response.
+            </summary>
+            <returns>The request builder object.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.HttpRequestBuilder.SkipAuthorization">
+            <summary>
+            Configure request to skip adding authorization header.
+            </summary>
+            <returns>The request builder object.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.HttpRequestBuilder.AcceptNDJson">
+            <summary>
+            Configure request to ask for the NDJSON response.
+            </summary>
+            <returns>The request builder object.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.HttpRequestBuilder.AcceptContentType(System.String)">
+            <summary>
+            Configure request to ask for a response with specific content type.
+            </summary>
+            <param name="contentType">The content type.</param>
+            <returns>The request builder object.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.HttpRequestBuilder.WithAppAccessToken(System.String)">
+            <summary>
+            Configure request to ask for the JSON response.
+            </summary>
+            <param name="accessToken">The access token.</param>
+            <returns>The request builder object.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.HttpRequestBuilder.IfMatch(System.String)">
+            <summary>
+            Configure request to ask for resource with specific ETAG.
+            </summary>
+            <param name="etag">The entity tag.</param>
+            <returns>The request builder object.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.HttpRequestBuilder.IfNoneMatch(System.String)">
+            <summary>
+            Configure request to ask for resource with specific ETAG.
+            </summary>
+            <param name="etag">The entity tag.</param>
+            <returns>The request builder object.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.HttpRequestBuilder.IfModifiedSince(System.Nullable{System.DateTimeOffset})">
+            <summary>
+            Configure request to ask for resource modified after specific timestamp.
+            </summary>
+            <param name="after">Optional parameter to ask for for content modified after certain point in time.</param>
+            <returns>The request builder object.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.HttpRequestBuilder.PagedRange(System.Nullable{System.Int64},System.Nullable{System.Int64})">
+            <summary>
+            Configure request to ask for specific paged range.
+            </summary>
+            <param name="batchSize">Optional parameter to ask for a chunked response.</param>
+            <param name="from">Optional parameter to ask to return a collection from certain point.</param>
+            <returns>The request builder object.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.HttpRequestBuilder.Range(System.Nullable{System.Int64},System.Nullable{System.Int64})">
+            <summary>
+            Configure request to ask for specific range.
+            </summary>
+            <param name="from">The position at which to start sending data.</param>
+            <param name="to">The position at which to stop sending data.</param>
+            <returns>The request builder object.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.HttpRequestBuilder.WithContent(System.Net.Http.HttpContent)">
+            <summary>
+            Set request content.
+            </summary>
+            <param name="content">The content of the request.</param>
+            <returns>The request builder object.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.HttpRequestBuilder.WithDigestHeader(System.String)">
+            <summary>
+            Appends request header with Digest.
+            </summary>
+            <param name="content">String content.</param>
+            <returns>The request builder object.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.HttpRequestBuilder.SendAsync(System.Threading.CancellationToken)">
+            <summary>
+            Send an HTTP request as an asynchronous operation.
+            </summary>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The task object representing the asynchronous operation.</returns>
+            <exception cref="T:System.InvalidOperationException">The request message was already sent by the <see cref="T:System.Net.Http.HttpClient"/> instance.</exception>
+            <exception cref="T:Trimble.Connect.Client.InvalidServiceOperationException">The server respond with the error.</exception>
+            <remarks>The response from the server is checked and translated to <see cref="T:Trimble.Connect.Client.InvalidServiceOperationException"/> in case of error response.</remarks>
+            <remarks>The <see cref="F:Trimble.Connect.Client.Common.Http.HttpRequestBuilder.request"/> is disposed after the request is sent. This means that this <see cref="T:Trimble.Connect.Client.Common.Http.HttpRequestBuilder"/> instance cannot be re-used to send multiple requests.</remarks>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.HttpRequestBuilder.SendAsync(System.Net.Http.HttpCompletionOption,System.Threading.CancellationToken)">
+            <summary>
+            Send an HTTP request as an asynchronous operation.
+            </summary>
+            <param name="completionOption">The completion option.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The task object representing the asynchronous operation.</returns>
+            <exception cref="T:System.InvalidOperationException">The request message was already sent by the <see cref="T:System.Net.Http.HttpClient"/> instance.</exception>
+            <exception cref="T:Trimble.Connect.Client.InvalidServiceOperationException">The server respond with the error.</exception>
+            <remarks>The response from the server is checked and translated to <see cref="T:Trimble.Connect.Client.InvalidServiceOperationException"/> in case of error response.</remarks>
+            <remarks>The <see cref="F:Trimble.Connect.Client.Common.Http.HttpRequestBuilder.request"/> is disposed after the request is sent. This means that this <see cref="T:Trimble.Connect.Client.Common.Http.HttpRequestBuilder"/> instance cannot be re-used to send multiple requests.</remarks>
+            <remarks>Sending the request is automatically retried (with exponential backoff and jitter) on errors that need retrying.</remarks>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.HttpRequestBuilder.Dispose">
+            <summary>
+            Dispose the request.
+            </summary>
+        </member>
+        <member name="T:Trimble.Connect.Client.Common.Http.RetryHttpMessageHandler">
+            <summary>
+            A <see cref="T:System.Net.Http.DelegatingHandler"/> implementation that executes request processing surrounded by a retry policy.
+            Retries the http requests automatically based on <see cref="T:Trimble.Connect.Client.IRetryConfig"/> configuration passed.
+            The requests retried include 5xx errors and 429 throttling errors.
+            If <see cref="T:Trimble.Connect.Client.ICredentialsProvider"/> passed the 401 errors are also retried once after the credentials refresh.
+            If <see cref="T:Trimble.Connect.Client.ICredentialsProvider"/> provided the bearer token is requested from provider and attached to each request automatically.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.Http.RetryHttpMessageHandler.config">
+            <summary>
+            The retry configuration.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.Http.RetryHttpMessageHandler.credentials">
+            <summary>
+            The credentials provider.
+            </summary>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.RetryHttpMessageHandler.#ctor(Trimble.Connect.Client.IRetryConfig,Trimble.Connect.Client.ICredentialsProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Trimble.Connect.Client.Common.Http.RetryHttpMessageHandler"/> class.
+            </summary>
+            <param name="config">The retry configuration.</param>
+            <param name="credentials">The optional credentials provider. If present the 401 errors are retried as well with credentials refresh.</param>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.RetryHttpMessageHandler.#ctor(System.Net.Http.HttpMessageHandler,Trimble.Connect.Client.IRetryConfig,Trimble.Connect.Client.ICredentialsProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Trimble.Connect.Client.Common.Http.RetryHttpMessageHandler"/> class.
+            </summary>
+            <param name="innerHandler">An HTTP message handler to pass to the <see cref="T:System.Net.Http.HttpMessageHandler"/> for sending requests.</param>
+            <param name="config">The retry configuration.</param>
+            <param name="credentials">The optional credentials provider. If present the 401 errors are retried as well with credentials refresh.</param>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.RetryHttpMessageHandler.SendAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.RetryHttpMessageHandler.SendCoreAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)">
+            <summary>
+            Sends the request with the credentials refresh logic is credentials provider is given.
+            </summary>
+            <param name="request">The request.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The response.</returns>
+        </member>
+        <member name="T:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient">
+            <summary>
+            The <see cref="T:System.Net.Http.HttpClient"/> wrapper.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient.InstallationIdHeader">
+            <summary>
+            Name of the Installation ID header included on each request.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient.ApplicationIdHeader">
+            <summary>
+            Name of the App ID header included on each request.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient.DefaultHandlerFactory">
+            <summary>
+            Factory method for creating the default HTTP client handler.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient.objectClient">
+            <summary>
+            The client which will be used to send regular (non-login) HTTP
+            requests by this service. It is used for REST API calls related to objects.
+            </summary>
+            <remarks>It's defined as an instance member (instead of being
+            created based on the handler) so that the underlying connection
+            can be reused across multiple requests.</remarks>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient.fileClient">
+            <summary>
+            The client which will be used to send regular (non-login) HTTP
+            requests by this service. It is used for REST API calls which include file upload or download.
+            </summary>
+            <remarks>It's defined as an instance member (instead of being
+            created based on the handler) so that the underlying connection
+            can be reused across multiple requests.</remarks>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient.#ctor(System.Net.Http.HttpMessageHandler,System.Net.Http.DelegatingHandler[])">
+            <summary>
+            Initializes a new instance of the <see cref="T:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient"/> class.
+            </summary>
+            <param name="innerHandler">The inner handler represents the destination of the HTTP message channel and is responsible for processing the HTTP response messages.</param>
+            <param name="handlers">An ordered list of <see cref="T:System.Net.Http.DelegatingHandler"/> instances to be invoked as an 
+            <see cref="T:System.Net.Http.HttpRequestMessage"/> travels from the <see cref="T:System.Net.Http.HttpClient"/> to the network and an 
+            <see cref="T:System.Net.Http.HttpResponseMessage"/> travels from the network back to <see cref="T:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient"/>.
+            The handlers are invoked in a top-down fashion. That is, the first entry is invoked first for 
+            an outbound request message but last for an inbound response message.</param>
+            <remarks>All handlers are disposed when this instance is disposed.</remarks>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient.#ctor(System.Net.Http.HttpMessageHandler,System.Collections.Generic.IEnumerable{System.Net.Http.DelegatingHandler})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient"/> class.
+            </summary>
+            <param name="innerHandler">The inner handler represents the destination of the HTTP message channel and is responsible for processing the HTTP response messages.</param>
+            <param name="handlers">An ordered list of <see cref="T:System.Net.Http.DelegatingHandler"/> instances to be invoked as an 
+            <see cref="T:System.Net.Http.HttpRequestMessage"/> travels from the <see cref="T:System.Net.Http.HttpClient"/> to the network and an 
+            <see cref="T:System.Net.Http.HttpResponseMessage"/> travels from the network back to <see cref="T:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient"/>.
+            The handlers are invoked in a top-down fashion. That is, the first entry is invoked first for 
+            an outbound request message but last for an inbound response message.</param>
+            <remarks>All handlers are disposed when this instance is disposed.</remarks>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient.#ctor(System.Net.Http.HttpMessageHandler)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient"/> class.
+            </summary>
+            <param name="pipeline">The http pipeline.</param>
+            <returns>The http client.</returns>
+            <remarks>All handlers are disposed when this instance is disposed.</remarks>
+        </member>
+        <member name="P:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient.Config">
+            <summary>
+            Gets the client configuration parameters.
+            </summary>
+            <value>The client configuration parameters.</value>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient.Create(Trimble.Connect.Client.IClientConfig,Trimble.Connect.Client.ICredentialsProvider)">
+            <summary>
+            Factory method for the <see cref="T:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient"/> class.
+            Initializes it based on the configuration passed.
+            </summary>
+            <param name="config">The configuration.</param>
+            <param name="credentials">The optional credentials provider. If given it enables an automatic credentials refresh mechanism.</param>
+            <returns>The http client.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient.AddUserAgent(System.String,System.String)">
+            <summary>
+            Adds the product name and version to be used in the user agent header when making requests.
+            </summary>
+            <param name="productName">Name of the product to be used in the user agent.</param>
+            <param name="version">Version of the product to be used in the user agent.</param>
+            <remarks>If entry with the same <paramref name="productName"/> exists already the call is silently ignored.</remarks>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient.AddUserAgent(System.String)">
+            <summary>
+            Adds the user agent header when making requests.
+            </summary>
+            <param name="userAgent">The user agent.</param>
+            <remarks>The input is expected in the format "productName"/"version".</remarks>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient.CreateRequest(System.Net.Http.HttpMethod,System.Uri,System.String)">
+            <summary>
+            Creates an HTTP request that includes the standard headers.
+            </summary>
+            <param name="method">The HTTP method used to request the resource.</param>
+            <param name="requestUri">The absolute URI to send request to.</param>
+            <param name="accessToken">The access token of the user.</param>
+            <returns>The response.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient.CreateRequest(System.Net.Http.HttpMethod,System.Uri)">
+            <summary>
+            Creates an HTTP request.
+            </summary>
+            <param name="method">The HTTP method used to request the resource.</param>
+            <param name="requestUri">The absolute URI to send request to.</param>
+            <returns>The response.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient.CreateBinaryRequest(System.Net.Http.HttpMethod,System.Uri,System.String)">
+            <summary>
+            Creates an HTTP request that includes the standard headers to get binary content.
+            </summary>
+            <param name="method">The HTTP method used to request the resource.</param>
+            <param name="requestUri">The absolute URI to send request to.</param>
+            <param name="accessToken">The access token of the user.</param>
+            <returns>The response.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient.CreateBinaryRequest(System.Net.Http.HttpMethod,System.Uri)">
+            <summary>
+            Creates an HTTP request to get binary content.
+            </summary>
+            <param name="method">The HTTP method used to request the resource.</param>
+            <param name="requestUri">The absolute URI to send request to.</param>
+            <returns>The response.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient.UploadFileAsync(System.Uri,System.String,Trimble.Connect.Client.FileUploadRequest,System.TimeSpan,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Uploads the file.
+            </summary>
+            <param name="requestUri">The absolute URI to send request to.</param>
+            <param name="accessToken">The access token of the user.</param>
+            <param name="request">The file upload request.</param>
+            <param name="timeout">
+            The time span to wait before cancelling the read activity from network stream.
+            The timeout is monitored not for the whole operation but for the activity in the stream.
+            If there is no activity for the specified period of time the operation is cancelled.
+            </param>
+            <param name="bufferSize">The size of the buffer. Value must be greater than zero. The default size is 80KB.</param> 
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The response.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient.UploadFileContentAsync(System.Uri,System.String,Trimble.Connect.Client.FileUploadRequest,System.TimeSpan,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Upload File Content async.
+            </summary>
+            <param name="requestUri">The absolute URI to send request to.</param>
+            <param name="accessToken">The access token of the user.</param>
+            <param name="request">The upload request.</param>
+            <param name="timeout">
+            The time span to wait before cancelling the read activity from network stream.
+            The timeout is monitored not for the whole operation but for the activity in the stream.
+            If there is no activity for the specified period of time the operation is cancelled.
+            </param>
+            <param name="bufferSize">The size of the buffer. Value must be greater than zero. The default size is 80KB.</param> 
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The response.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient.UploadFileContentAsync(System.Uri,System.IO.Stream,System.TimeSpan,System.Action{System.Net.Http.Handlers.HttpProgressEventArgs},System.Threading.CancellationToken)">
+            <summary>
+            Upload File Content async.
+            </summary>
+            <param name="requestUri">The absolute URI to send request to.</param>
+            <param name="stream">The file stream.</param>
+            <param name="timeout">
+            The time span to wait before cancelling the read activity from network stream.
+            The timeout is monitored not for the whole operation but for the activity in the stream.
+            If there is no activity for the specified period of time the operation is cancelled.
+            </param>
+            <param name="progress">The progress callback.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The response.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient.UploadThumbnailAsync(System.Uri,System.String,System.IO.Stream,System.String,System.Action{System.Net.Http.Handlers.HttpProgressEventArgs},System.Threading.CancellationToken)">
+            <summary>
+            Uploads thumbnail.
+            </summary>
+            <param name="requestUri">The absolute URI to send request to.</param>
+            <param name="accessToken">The access token of the user.</param>
+            <param name="stream">The stream to read the thumbnail content from. The stream is closed automatically when request is completed.</param>
+            <param name="contentType">The content type.</param>
+            <param name="progress">The progress callback.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The response.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient.UploadWithProgressAsync(System.Net.Http.HttpMethod,System.Uri,System.String,System.IO.Stream,System.String,System.TimeSpan,System.Int32,System.Action{System.Net.Http.Handlers.HttpProgressEventArgs},System.Threading.CancellationToken)">
+            <summary>
+            Upload a content with optional progress.
+            </summary>
+            <param name="method">The HTTP method to use.</param>
+            <param name="requestUri">The absolute URI to send request to.</param>
+            <param name="accessToken">The access token of the user.</param>
+            <param name="stream">The stream to read the content from. The stream is closed automatically when request is completed.</param>
+            <param name="contentType">The optional content type.</param>
+            <param name="timeout">
+            The time span to wait before cancelling the read activity from network stream.
+            The timeout is monitored not for the whole operation but for the activity in the stream.
+            If there is no activity for the specified period of time the operation is cancelled.
+            </param>
+            <param name="bufferSize">The size of the buffer. Value must be greater than zero. The default size is 80KB.</param> 
+            <param name="progress">The optional progress callback.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>The response.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient.Dispose">
+            <summary>
+            Implementation of <see cref="T:System.IDisposable"/>
+            </summary>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient.Dispose(System.Boolean)">
+            <summary>
+            Implementation of <see cref="T:System.IDisposable"/> for derived classes to use.
+            </summary>
+            <param name="disposing">
+            Indicates if being called from the Dispose() method or the finalizer.
+            </param>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient.CreateFileContent(System.IO.Stream,System.String,System.String,System.Int32)">
+            <summary>
+            Creates the HTTP content for the stream.
+            </summary>
+            <param name="stream">The stream with content.</param>
+            <param name="fileName">The file name.</param>
+            <param name="contentType">The optional content type.</param>
+            <param name="bufferSize">The transfer buffer size.</param>
+            <returns>The HTTP content.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient.CreateDefaultHttpClientHandler">
+            <summary>
+            Creates a default HttpMessageHandler that supports automatic decompression.
+            </summary>
+            <returns>
+            A default HttpClientHandler that supports automatic decompression.
+            </returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient.TryAddUserAgentHeader(System.String,System.Func{System.String})">
+            <summary>
+            Try to calculate and add an http header.
+            </summary>
+            <param name="productName">The product name.</param>
+            <param name="getValue">The function to calculate the value of the header.</param>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient.AddUserAgent(System.Net.Http.Headers.ProductInfoHeaderValue)">
+            <summary>
+            Adds an entry to the user agent header when making requests.
+            </summary>
+            <param name="entry">The entry to add.</param>
+            <remarks>Add only if entry with same name does not exists yet, otherwise silently ignore.</remarks>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.TrimbleConnectHttpClient.TryAddHeader(System.String,System.Func{System.String})">
+            <summary>
+            Try to calculate and add an http header.
+            </summary>
+            <param name="name">The header name.</param>
+            <param name="getValue">The function to calculate the value of the header.</param>
+        </member>
+        <member name="T:Trimble.Connect.Client.Common.Http.HttpContentWithProgress">
+            <summary>
+            Wraps an inner <see cref="T:System.Net.Http.HttpContent"/> in order to insert a <see cref="T:Trimble.Connect.Client.Common.IO.ProgressStream"/> on writing data.
+            This is adapted from System.Net.Http.Formatting.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.Http.HttpContentWithProgress.innerContent">
+            <summary>
+            The inner content.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.Http.HttpContentWithProgress.progress">
+            <summary>
+            The progress callback.
+            </summary>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.HttpContentWithProgress.#ctor(System.Net.Http.HttpContent,System.Action{System.Net.Http.Handlers.HttpProgressEventArgs})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Trimble.Connect.Client.Common.Http.HttpContentWithProgress"/> class.
+            </summary>
+            <param name="innerContent">The inner content.</param>
+            <param name="progress">The progress callback.</param>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.HttpContentWithProgress.SerializeToStreamAsync(System.IO.Stream,System.Net.TransportContext)">
+            <summary>
+            Serialize the HTTP content to a stream as an asynchronous operation.
+            </summary>
+            <returns>
+            Returns <see cref="T:System.Threading.Tasks.Task"/>.The task object representing the asynchronous operation.
+            </returns>
+            <param name="stream">The target stream.</param>
+            <param name="context">Information about the transport (channel binding token, for example). This parameter may be null.</param>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.HttpContentWithProgress.TryComputeLength(System.Int64@)">
+            <summary>
+            Determines whether the HTTP content has a valid length in bytes.
+            </summary>
+            <returns>
+            Returns <see cref="T:System.Boolean"/>.true if <paramref name="length"/> is a valid length; otherwise, false.
+            </returns>
+            <param name="length">The length in bytes of the HTTP content.</param>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.Http.HttpContentWithProgress.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources used by the <see cref="T:System.Net.Http.HttpContent"/> and optionally disposes of the managed resources.
+            </summary>
+            <param name="disposing">True to release both managed and unmanaged resources; false to releases only unmanaged resources.</param>
+        </member>
+        <member name="T:Trimble.Connect.Client.Common.IO.AsyncResult">
+            <summary>
+            Base class for custom <see cref="T:Trimble.Connect.Client.Common.IO.AsyncResult"/> implementations.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.IO.AsyncResult.callback">
+            <summary>
+            The callback.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.IO.AsyncResult.state">
+            <summary>
+            The user state.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.IO.AsyncResult.endCalled">
+            <summary>
+            The end has been called for the request.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.IO.AsyncResult.exception">
+            <summary>
+            The exception if any during request execution.
+            </summary>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.IO.AsyncResult.#ctor(System.AsyncCallback,System.Object)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Trimble.Connect.Client.Common.IO.AsyncResult" /> class.
+            </summary>
+            <param name="callback">The callback.</param>
+            <param name="state">The state.</param>
+        </member>
+        <member name="P:Trimble.Connect.Client.Common.IO.AsyncResult.AsyncState">
+            <summary>
+            Gets a user-defined object that qualifies or contains information about an asynchronous operation.
+            </summary>
+            <value>
+            A user-defined object that qualifies or contains information about an asynchronous operation.
+            </value>
+        </member>
+        <member name="P:Trimble.Connect.Client.Common.IO.AsyncResult.AsyncWaitHandle">
+            <summary>
+            Gets a <see cref="T:System.Threading.WaitHandle"/> that is used to wait for an asynchronous operation to complete.
+            </summary>
+            <value>
+            A <see cref="T:System.Threading.WaitHandle"/> that is used to wait for an asynchronous operation to complete.
+            </value>
+        </member>
+        <member name="P:Trimble.Connect.Client.Common.IO.AsyncResult.CompletedSynchronously">
+            <summary>
+            Gets a value indicating whether the asynchronous operation completed synchronously.
+            </summary>
+            <value>
+            True if the asynchronous operation completed synchronously; otherwise, false.
+            </value>
+        </member>
+        <member name="P:Trimble.Connect.Client.Common.IO.AsyncResult.IsCompleted">
+            <summary>
+            Gets a value indicating whether the asynchronous operation has completed.
+            </summary>
+            <value>
+            True if the operation is complete; otherwise, false.
+            </value>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.IO.AsyncResult.End``1(System.IAsyncResult)">
+            <summary>
+            End the operation.
+            </summary>
+            <typeparam name="TAsyncResult">The result type.</typeparam>
+            <param name="result">The result.</param>
+            <returns>The typed result.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.IO.AsyncResult.Complete(System.Boolean)">
+            <summary>
+            Completes the request.
+            </summary>
+            <param name="completedSynchronously">True if complete synchronously.</param>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.IO.AsyncResult.Complete(System.Boolean,System.Exception)">
+            <summary>
+            Complete operation with exception.
+            </summary>
+            <param name="completedSynchronously">True if complete synchronously.</param>
+            <param name="exception">The exception.</param>
+        </member>
+        <member name="T:Trimble.Connect.Client.Common.IO.DelegatingStream">
+            <summary>
+            Stream that delegates to inner stream. 
+            This is taken from System.Net.Http.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.IO.DelegatingStream.innerStream">
+            <summary>
+            The inner stream.
+            </summary>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.IO.DelegatingStream.#ctor(System.IO.Stream)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Trimble.Connect.Client.Common.IO.DelegatingStream"/> class.
+            </summary>
+            <param name="innerStream">The inner stream.</param>
+        </member>
+        <member name="P:Trimble.Connect.Client.Common.IO.DelegatingStream.CanRead">
+            <summary>
+            When overridden in a derived class, gets a value indicating whether the current stream supports reading.
+            </summary>
+            <returns>
+            true if the stream supports reading; otherwise, false.
+            </returns>
+        </member>
+        <member name="P:Trimble.Connect.Client.Common.IO.DelegatingStream.CanSeek">
+            <summary>
+            When overridden in a derived class, gets a value indicating whether the current stream supports seeking.
+            </summary>
+            <returns>
+            true if the stream supports seeking; otherwise, false.
+            </returns>
+        </member>
+        <member name="P:Trimble.Connect.Client.Common.IO.DelegatingStream.CanWrite">
+            <summary>
+            When overridden in a derived class, gets a value indicating whether the current stream supports writing.
+            </summary>
+            <returns>
+            true if the stream supports writing; otherwise, false.
+            </returns>
+        </member>
+        <member name="P:Trimble.Connect.Client.Common.IO.DelegatingStream.Length">
+            <summary>
+            When overridden in a derived class, gets the length in bytes of the stream.
+            </summary>
+            <returns>
+            A long value representing the length of the stream in bytes.
+            </returns>
+            <exception cref="T:System.NotSupportedException">A class derived from Stream does not support seeking.</exception>
+            <exception cref="T:System.ObjectDisposedException">Methods were called after the stream was closed.</exception>
+        </member>
+        <member name="P:Trimble.Connect.Client.Common.IO.DelegatingStream.Position">
+            <summary>
+            When overridden in a derived class, gets or sets the position within the current stream.
+            </summary>
+            <returns>
+            The current position within the stream.
+            </returns>
+            <exception cref="T:System.IO.IOException">An I/O error occurs. </exception><exception cref="T:System.NotSupportedException">The stream does not support seeking.</exception>
+            <exception cref="T:System.ObjectDisposedException">Methods were called after the stream was closed.</exception>
+        </member>
+        <member name="P:Trimble.Connect.Client.Common.IO.DelegatingStream.ReadTimeout">
+            <summary>
+            Gets or sets a value, in milliseconds, that determines how long the stream will attempt to read before timing out. 
+            </summary>
+            <returns>
+            A value, in milliseconds, that determines how long the stream will attempt to read before timing out.
+            </returns>
+            <exception cref="T:System.InvalidOperationException">
+            The <see cref="P:System.IO.Stream.ReadTimeout"/> method always throws an <see cref="T:System.InvalidOperationException"/>.
+            </exception>
+        </member>
+        <member name="P:Trimble.Connect.Client.Common.IO.DelegatingStream.CanTimeout">
+            <summary>
+            Gets a value that determines whether the current stream can time out.
+            </summary>
+            <returns>
+            A value that determines whether the current stream can time out.
+            </returns>
+        </member>
+        <member name="P:Trimble.Connect.Client.Common.IO.DelegatingStream.WriteTimeout">
+            <summary>
+            Gets or sets a value, in milliseconds, that determines how long the stream will attempt to write before timing out. 
+            </summary>
+            <returns>
+            A value, in milliseconds, that determines how long the stream will attempt to write before timing out.
+            </returns>
+            <exception cref="T:System.InvalidOperationException">
+            The <see cref="P:System.IO.Stream.WriteTimeout"/> method always throws an <see cref="T:System.InvalidOperationException"/>.
+            </exception>
+        </member>
+        <member name="P:Trimble.Connect.Client.Common.IO.DelegatingStream.InnerStream">
+            <summary>
+            Gets the inner stream.
+            </summary>
+            <value>The stream.</value>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.IO.DelegatingStream.Seek(System.Int64,System.IO.SeekOrigin)">
+            <summary>
+            When overridden in a derived class, sets the position within the current stream.
+            </summary>
+            <returns>
+            The new position within the current stream.
+            </returns>
+            <param name="offset">A byte offset relative to the <paramref name="origin"/> parameter. </param>
+            <param name="origin">A value of type <see cref="T:System.IO.SeekOrigin"/> indicating the reference point used to obtain the new position. </param>
+            <exception cref="T:System.IO.IOException">An I/O error occurs. </exception>
+            <exception cref="T:System.NotSupportedException">The stream does not support seeking, such as if the stream is constructed from a pipe or console output. </exception>
+            <exception cref="T:System.ObjectDisposedException">Methods were called after the stream was closed. </exception>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.IO.DelegatingStream.Read(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            When overridden in a derived class, reads a sequence of bytes from the current stream and advances the position within the stream by the number of bytes read.
+            </summary>
+            <returns>
+            The total number of bytes read into the buffer. 
+            This can be less than the number of bytes requested if that many bytes are not currently available, or zero (0) if the end of the stream has been reached.
+            </returns>
+            <param name="buffer">
+            An array of bytes. 
+            When this method returns, the buffer contains the specified byte array with the values between <paramref name="offset"/> 
+            and (<paramref name="offset"/> + <paramref name="count"/> - 1) replaced by the bytes read from the current source.
+            </param>
+            <param name="offset">The zero-based byte offset in <paramref name="buffer"/> at which to begin storing the data read from the current stream. </param>
+            <param name="count">The maximum number of bytes to be read from the current stream. </param>
+            <exception cref="T:System.ArgumentException">The sum of <paramref name="offset"/> and <paramref name="count"/> is larger than the buffer length. </exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="buffer"/> is null. </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="offset"/> or <paramref name="count"/> is negative. </exception>
+            <exception cref="T:System.IO.IOException">An I/O error occurs. </exception>
+            <exception cref="T:System.NotSupportedException">The stream does not support reading. </exception>
+            <exception cref="T:System.ObjectDisposedException">Methods were called after the stream was closed. </exception>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.IO.DelegatingStream.ReadByte">
+            <summary>
+            Reads a byte from the stream and advances the position within the stream by one byte, or returns -1 if at the end of the stream.
+            </summary>
+            <returns>
+            The unsigned byte cast to an integer, or -1 if at the end of the stream.
+            </returns>
+            <exception cref="T:System.NotSupportedException">The stream does not support reading. </exception>
+            <exception cref="T:System.ObjectDisposedException">Methods were called after the stream was closed. </exception>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.IO.DelegatingStream.ReadAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Asynchronously reads a sequence of bytes from the current stream, advances the position within the stream by the number of bytes read, and monitors cancellation requests.
+            </summary>
+            <returns>
+            A task that represents the asynchronous read operation. The value contains the total number of bytes read into the buffer.
+            The result value can be less than the number of bytes requested if the number of bytes currently available is less than the requested number, 
+            or it can be 0 (zero) if the end of the stream has been reached. 
+            </returns>
+            <param name="buffer">The buffer to write the data into.</param>
+            <param name="offset">The byte offset in <paramref name="buffer"/> at which to begin writing data from the stream.</param>
+            <param name="count">The maximum number of bytes to read.</param>
+            <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="buffer"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="offset"/> or <paramref name="count"/> is negative.</exception>
+            <exception cref="T:System.ArgumentException">The sum of <paramref name="offset"/> and <paramref name="count"/> is larger than the buffer length.</exception>
+            <exception cref="T:System.NotSupportedException">The stream does not support reading.</exception>
+            <exception cref="T:System.ObjectDisposedException">The stream has been disposed.</exception>
+            <exception cref="T:System.InvalidOperationException">The stream is currently in use by a previous read operation. </exception>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.IO.DelegatingStream.Flush">
+            <summary>
+            When overridden in a derived class, clears all buffers for this stream and causes any buffered data to be written to the underlying device.
+            </summary>
+            <exception cref="T:System.IO.IOException">An I/O error occurs. </exception>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.IO.DelegatingStream.FlushAsync(System.Threading.CancellationToken)">
+            <summary>
+            Asynchronously clears all buffers for this stream, causes any buffered data to be written to the underlying device, and monitors cancellation requests.
+            </summary>
+            <returns>
+            A task that represents the asynchronous flush operation.
+            </returns>
+            <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+            <exception cref="T:System.ObjectDisposedException">The stream has been disposed.</exception>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.IO.DelegatingStream.SetLength(System.Int64)">
+            <summary>
+            When overridden in a derived class, sets the length of the current stream.
+            </summary>
+            <param name="value">The desired length of the current stream in bytes. </param><exception cref="T:System.IO.IOException">An I/O error occurs. </exception>
+            <exception cref="T:System.NotSupportedException">The stream does not support both writing and seeking, such as if the stream is constructed from a pipe or console output. </exception>
+            <exception cref="T:System.ObjectDisposedException">Methods were called after the stream was closed. </exception>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.IO.DelegatingStream.Write(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            When overridden in a derived class, writes a sequence of bytes to the current stream and advances the current position within this stream by the number of bytes written.
+            </summary>
+            <param name="buffer">An array of bytes. This method copies <paramref name="count"/> bytes from <paramref name="buffer"/> to the current stream. </param>
+            <param name="offset">The zero-based byte offset in <paramref name="buffer"/> at which to begin copying bytes to the current stream. </param>
+            <param name="count">The number of bytes to be written to the current stream. </param>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.IO.DelegatingStream.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Asynchronously writes a sequence of bytes to the current stream, advances the current position within this stream by the number of bytes written, and monitors cancellation requests.
+            </summary>
+            <returns>
+            A task that represents the asynchronous write operation.
+            </returns>
+            <param name="buffer">The buffer to write data from.</param>
+            <param name="offset">The zero-based byte offset in <paramref name="buffer"/> from which to begin copying bytes to the stream.</param>
+            <param name="count">The maximum number of bytes to write.</param>
+            <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="buffer"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="offset"/> or <paramref name="count"/> is negative.</exception>
+            <exception cref="T:System.ArgumentException">The sum of <paramref name="offset"/> and <paramref name="count"/> is larger than the buffer length.</exception>
+            <exception cref="T:System.NotSupportedException">The stream does not support writing.</exception>
+            <exception cref="T:System.ObjectDisposedException">The stream has been disposed.</exception>
+            <exception cref="T:System.InvalidOperationException">The stream is currently in use by a previous write operation. </exception>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.IO.DelegatingStream.WriteByte(System.Byte)">
+            <summary>
+            Writes a byte to the current position in the stream and advances the position within the stream by one byte.
+            </summary>
+            <param name="value">The byte to write to the stream. </param><exception cref="T:System.IO.IOException">An I/O error occurs. </exception>
+            <exception cref="T:System.NotSupportedException">The stream does not support writing, or the stream is already closed. </exception>
+            <exception cref="T:System.ObjectDisposedException">Methods were called after the stream was closed. </exception>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.IO.DelegatingStream.Dispose(System.Boolean)">
+            <summary>
+            Releases the unmanaged resources used by the <see cref="T:System.IO.Stream"/> and optionally releases the managed resources.
+            </summary>
+            <param name="disposing">True to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        </member>
+        <member name="T:Trimble.Connect.Client.Common.IO.ProgressStream">
+            <summary>
+            This implementation of <see cref="T:Trimble.Connect.Client.Common.IO.DelegatingStream"/> registers how much data has been 
+            read (received) versus written (sent) for a particular HTTP operation.
+            This is adapted from System.Net.Http.Formatting.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.IO.ProgressStream.progress">
+            <summary>
+            The progress callback.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.IO.ProgressStream.totalBytesToReceive">
+            <summary>
+            Total bytes counter if known.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.IO.ProgressStream.totalBytesToSend">
+            <summary>
+            Total bytes counter if known.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.IO.ProgressStream.bytesReceived">
+            <summary>
+            Received bytes counter.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Common.IO.ProgressStream.bytesSent">
+            <summary>
+            Sent bytes counter.
+            </summary>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.IO.ProgressStream.#ctor(System.IO.Stream,System.Action{System.Net.Http.Handlers.HttpProgressEventArgs},System.Nullable{System.Int64},System.Nullable{System.Int64})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Trimble.Connect.Client.Common.IO.ProgressStream"/> class.
+            </summary>
+            <param name="innerStream">The inner stream.</param>
+            <param name="progress">The progress callback.</param>
+            <param name="totalBytesToSend">Total bytes to send.</param>
+            <param name="totalBytesToReceive">Total bytes to receive.</param>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.IO.ProgressStream.Read(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            When overridden in a derived class, reads a sequence of bytes from the current stream and advances the position within the stream by the number of bytes read.
+            </summary>
+            <returns>
+            The total number of bytes read into the buffer. 
+            This can be less than the number of bytes requested if that many bytes are not currently available, or zero (0) if the end of the stream has been reached.
+            </returns>
+            <param name="buffer">
+            An array of bytes. 
+            When this method returns, the buffer contains the specified byte array with the values between <paramref name="offset"/> 
+            and (<paramref name="offset"/> + <paramref name="count"/> - 1) replaced by the bytes read from the current source.
+            </param>
+            <param name="offset">The zero-based byte offset in <paramref name="buffer"/> at which to begin storing the data read from the current stream. </param>
+            <param name="count">The maximum number of bytes to be read from the current stream. </param>
+            <exception cref="T:System.ArgumentException">The sum of <paramref name="offset"/> and <paramref name="count"/> is larger than the buffer length. </exception>
+            <exception cref="T:System.ArgumentNullException"><paramref name="buffer"/> is null. </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="offset"/> or <paramref name="count"/> is negative. </exception>
+            <exception cref="T:System.IO.IOException">An I/O error occurs. </exception>
+            <exception cref="T:System.NotSupportedException">The stream does not support reading. </exception>
+            <exception cref="T:System.ObjectDisposedException">Methods were called after the stream was closed. </exception>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.IO.ProgressStream.ReadByte">
+            <summary>
+            Reads a byte from the stream and advances the position within the stream by one byte, or returns -1 if at the end of the stream.
+            </summary>
+            <returns>
+            The unsigned byte cast to an integer, or -1 if at the end of the stream.
+            </returns>
+            <exception cref="T:System.NotSupportedException">The stream does not support reading. </exception>
+            <exception cref="T:System.ObjectDisposedException">Methods were called after the stream was closed. </exception>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.IO.ProgressStream.ReadAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Asynchronously reads a sequence of bytes from the current stream, advances the position within the stream by the number of bytes read, and monitors cancellation requests.
+            </summary>
+            <returns>
+            A task that represents the asynchronous read operation. 
+            The value contains the total number of bytes read into the buffer. 
+            The result value can be less than the number of bytes requested if the number of bytes currently available is less than the requested number, 
+            or it can be 0 (zero) if the end of the stream has been reached. 
+            </returns>
+            <param name="buffer">The buffer to write the data into.</param>
+            <param name="offset">The byte offset in <paramref name="buffer"/> at which to begin writing data from the stream.</param>
+            <param name="count">The maximum number of bytes to read.</param>
+            <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="buffer"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="offset"/> or <paramref name="count"/> is negative.</exception>
+            <exception cref="T:System.ArgumentException">The sum of <paramref name="offset"/> and <paramref name="count"/> is larger than the buffer length.</exception>
+            <exception cref="T:System.NotSupportedException">The stream does not support reading.</exception>
+            <exception cref="T:System.ObjectDisposedException">The stream has been disposed.</exception>
+            <exception cref="T:System.InvalidOperationException">The stream is currently in use by a previous read operation. </exception>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.IO.ProgressStream.Write(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            When overridden in a derived class, writes a sequence of bytes to the current stream and advances the current position within this stream by the number of bytes written.
+            </summary>
+            <param name="buffer">An array of bytes. This method copies <paramref name="count"/> bytes from <paramref name="buffer"/> to the current stream. </param>
+            <param name="offset">The zero-based byte offset in <paramref name="buffer"/> at which to begin copying bytes to the current stream. </param>
+            <param name="count">The number of bytes to be written to the current stream. </param>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.IO.ProgressStream.WriteByte(System.Byte)">
+            <summary>
+            Writes a byte to the current position in the stream and advances the position within the stream by one byte.
+            </summary>
+            <param name="value">The byte to write to the stream. </param><exception cref="T:System.IO.IOException">An I/O error occurs. </exception>
+            <exception cref="T:System.NotSupportedException">The stream does not support writing, or the stream is already closed. </exception>
+            <exception cref="T:System.ObjectDisposedException">Methods were called after the stream was closed. </exception>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.IO.ProgressStream.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Asynchronously writes a sequence of bytes to the current stream, advances the current position within this stream by the number of bytes written, and monitors cancellation requests.
+            </summary>
+            <returns>
+            A task that represents the asynchronous write operation.
+            </returns>
+            <param name="buffer">The buffer to write data from.</param>
+            <param name="offset">The zero-based byte offset in <paramref name="buffer"/> from which to begin copying bytes to the stream.</param>
+            <param name="count">The maximum number of bytes to write.</param>
+            <param name="cancellationToken">The token to monitor for cancellation requests. The default value is <see cref="P:System.Threading.CancellationToken.None"/>.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="buffer"/> is null.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException"><paramref name="offset"/> or <paramref name="count"/> is negative.</exception>
+            <exception cref="T:System.ArgumentException">The sum of <paramref name="offset"/> and <paramref name="count"/> is larger than the buffer length.</exception>
+            <exception cref="T:System.NotSupportedException">The stream does not support writing.</exception>
+            <exception cref="T:System.ObjectDisposedException">The stream has been disposed.</exception>
+            <exception cref="T:System.InvalidOperationException">The stream is currently in use by a previous write operation. </exception>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.IO.ProgressStream.ReportBytesSent(System.Int32,System.Object)">
+            <summary>
+            Report number of sent bytes.
+            </summary>
+            <param name="sent">The number of bytes sent.</param>
+            <param name="userState">The user defined state object.</param>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.IO.ProgressStream.ReportBytesReceived(System.Int32,System.Object)">
+            <summary>
+            Report number of received bytes.
+            </summary>
+            <param name="received">The number of bytes received.</param>
+            <param name="userState">The user defined state object.</param>
+        </member>
+        <member name="T:Trimble.Connect.Client.Common.IO.TransferProgressArgs">
+            <summary>
+            Encapsulates the information needed to provide transfer progress to subscribers.
+            </summary>
+        </member>
+        <member name="M:Trimble.Connect.Client.Common.IO.TransferProgressArgs.#ctor(System.Int64,System.Int32,System.Object,System.Int64,System.Nullable{System.Int64})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Trimble.Connect.Client.Common.IO.TransferProgressArgs"/> class.
+            </summary>
+            <param name="incrementTransferred">The how many bytes were transferred since last event.</param>
+            <param name="progressPercentage">The progress percentage.</param>
+            <param name="userToken">The user token.</param>
+            <param name="bytesTransferred">The number of bytes transferred so far.</param>
+            <param name="totalBytes">The total number of bytes to be transferred.</param>
+        </member>
+        <member name="P:Trimble.Connect.Client.Common.IO.TransferProgressArgs.IncrementTransferred">
+            <summary>
+            Gets the number of bytes transferred.
+            </summary>
+            <value>Number of bytes transferred.</value>
+        </member>
+        <member name="T:Trimble.Connect.Client.ClientConfig">
+            <summary>
+            This class is the base class of all the configuration settings to connect to a service.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.ClientConfig.httpHandlers">
+            <summary>
+            The list of http handlers.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.ClientConfig.userAgent">
+            <summary>
+            The user agent.
+            </summary>
+        </member>
+        <member name="P:Trimble.Connect.Client.ClientConfig.Region">
+            <inheritdoc/>
+        </member>
+        <member name="P:Trimble.Connect.Client.ClientConfig.Environment">
+            <inheritdoc/>
+        </member>
+        <member name="P:Trimble.Connect.Client.ClientConfig.ServiceURI">
+            <inheritdoc/>
+        </member>
+        <member name="P:Trimble.Connect.Client.ClientConfig.Timeout">
+            <inheritdoc/>
+        </member>
+        <member name="P:Trimble.Connect.Client.ClientConfig.ReadWriteTimeout">
+            <inheritdoc/>
+        </member>
+        <member name="P:Trimble.Connect.Client.ClientConfig.InnerHandler">
+            <inheritdoc/>
+        </member>
+        <member name="P:Trimble.Connect.Client.ClientConfig.HttpHandlers">
+            <inheritdoc/>
+        </member>
+        <member name="P:Trimble.Connect.Client.ClientConfig.BufferSize">
+            <inheritdoc/>
+        </member>
+        <member name="P:Trimble.Connect.Client.ClientConfig.UserAgent">
+            <inheritdoc/>
+        </member>
+        <member name="P:Trimble.Connect.Client.ClientConfig.RetryConfig">
+            <inheritdoc/>
+        </member>
+        <member name="M:Trimble.Connect.Client.ClientConfig.DetermineServiceURI">
+            <inheritdoc/>
+        </member>
+        <member name="M:Trimble.Connect.Client.ClientConfig.GetServiceURIForRegion(System.String)">
+            <summary>
+            All derived classes should override this method to provide a service URI for each supported region.
+            </summary>
+            <param name="region">The region or a project location for which the service URI is requested.</param>
+            <returns>The service URI for the specified region or project location.</returns>
+            <remarks>If project location is passed the <see cref="P:Trimble.Connect.Client.Common.RegionsConfig.Regions"/> is expected to be initialized.</remarks>
+        </member>
+        <member name="T:Trimble.Connect.Client.RetryConfig">
+            <summary>
+            This class is the base class of all the configuration settings related to retrying requests.
+            </summary>
+        </member>
+        <member name="P:Trimble.Connect.Client.RetryConfig.BaseDelay">
+            <inheritdoc/>
+        </member>
+        <member name="P:Trimble.Connect.Client.RetryConfig.MaxDelay">
+            <inheritdoc/>
+        </member>
+        <member name="P:Trimble.Connect.Client.RetryConfig.MaxErrorRetry">
+            <inheritdoc/>
+        </member>
+        <member name="T:Trimble.Connect.Client.IClient">
+            <summary>
+                All Trimble Connect service interfaces like IOrgClient or IPSetClient extend from this interface.
+                This allows all the Trimble Connect service interfaces to be identified by this base interface
+                and helps with generic constraints.
+            </summary>
+        </member>
+        <member name="P:Trimble.Connect.Client.IClient.Config">
+            <summary>
+            Gets a read-only view of the configuration for the service client.
+            </summary>
+            <value>The client configuration.</value>
+        </member>
+        <member name="T:Trimble.Connect.Client.IClientConfig">
+            <summary>
+                This interface is the read only access to the ClientConfig object used when setting
+                up service clients. Once service clients are initiated the config object should
+                not be changed to avoid issues with using a service client in a multi threaded
+                environment.
+            </summary>
+        </member>
+        <member name="P:Trimble.Connect.Client.IClientConfig.Region">
+            <summary>
+            Gets the RegionEndpoint property. The region constant that determines
+            the endpoint to use. Setting this property to null will force the SDK to recalculate
+            the RegionEndpoint value based on App/WebConfig, environment variables, profile, etc.
+            </summary>
+            <value>The region name.</value>
+        </member>
+        <member name="P:Trimble.Connect.Client.IClientConfig.Environment">
+            <summary>
+            Gets the constant which denotes the environment.
+            </summary>
+            <value>The environment constant.</value>
+            <remarks>The environment setting is optional and the derived classes have the possibility to define the behavior when there is no environment specified.
+            For example the derived client configuration classes could implement working with the production environment if there was no environment specified explicitly.</remarks>
+        </member>
+        <member name="P:Trimble.Connect.Client.IClientConfig.ServiceURI">
+            <summary>
+            Gets the ServiceURI property. This is an optional property;
+            change it only if you want to try a different service endpoint.
+            </summary>
+            <value>The URI to the service.</value>
+        </member>
+        <member name="P:Trimble.Connect.Client.IClientConfig.Timeout">
+            <summary>
+            Gets the timespan to wait before the request timeouts.
+            </summary>
+            <value>The timeout.</value>
+            <remarks>
+            Can be set only before sending the first request.
+            If the value is set, the value is assigned to the Timeout property of the HttpWebRequest/HttpClient
+            object used to send requests.
+            Please specify a timeout value only if the operation will not complete within
+            the default intervals specified for an HttpWebRequest/HttpClient.
+            </remarks>
+        </member>
+        <member name="P:Trimble.Connect.Client.IClientConfig.InnerHandler">
+            <summary>
+            Gets the inner handler that represents the destination of the HTTP message channel and is responsible for processing the HTTP response messages.
+            </summary>
+            <value>The http message handler.</value>
+            <remarks>All handlers are disposed when client instance is disposed.</remarks>
+        </member>
+        <member name="P:Trimble.Connect.Client.IClientConfig.HttpHandlers">
+            <summary>
+            Gets the ordered list of <see cref="T:System.Net.Http.DelegatingHandler"/> instances to be invoked as an 
+            <see cref="T:System.Net.Http.HttpRequestMessage"/> travels from the <see cref="T:System.Net.Http.HttpClient"/> to the network and an 
+            <see cref="T:System.Net.Http.HttpResponseMessage"/> travels from the network back to client.
+            The handlers are invoked in a top-down fashion. That is, the first entry is invoked first for 
+            an outbound request message but last for an inbound response message.
+            </summary>
+            <value>The ordered list of http delegating handlers.</value>
+            <remarks>All handlers are disposed when client instance is disposed.</remarks>
+        </member>
+        <member name="P:Trimble.Connect.Client.IClientConfig.UserAgent">
+            <summary>
+            Gets the list of User Agent headers to add to the requests.
+            </summary>
+            <value>The collection of User Agent headers.</value>
+            <remarks>
+            Several agent headers can be added to add information about different components to the UserAgent header.
+            </remarks>
+        </member>
+        <member name="P:Trimble.Connect.Client.IClientConfig.RetryConfig">
+            <summary>
+            Gets the configuration parameters for retrying requests.
+            If null the automatic retry mechanism is disabled.
+            </summary>
+            <value>The configuration parameters for retrying requests.</value>
+        </member>
+        <member name="M:Trimble.Connect.Client.IClientConfig.DetermineServiceURI">
+            <summary>
+            Using either the Region or the ServiceURI to determine what the URI to the service is.
+            </summary>
+            <returns>The URI to the service.</returns>
+        </member>
+        <member name="T:Trimble.Connect.Client.ICredentialsProvider">
+            <summary>
+            The credentials provider.
+            Allows to share credentials between several services client instances and coordinates the token refresh between them all.
+            </summary>
+        </member>
+        <member name="M:Trimble.Connect.Client.ICredentialsProvider.AuthorizeAsync(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Attaches all needed authorization information to the request (e.g. bearer token).
+            This method might trigger the token refresh if token is known to be expired, but typically it attaches the cached credentials.
+            </summary>
+            <param name="request">The request to be authorized.</param>
+            <returns>The task.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.ICredentialsProvider.InvalidateAndAuthorizeAsync(System.Net.Http.HttpRequestMessage,System.Net.Http.HttpResponseMessage)">
+            <summary>
+            Invalidates credentials and attaches refreshed credentials (e.g. bearer token) to the request.
+            This is the way to invalidate the credentials cache.
+            Called when it is known that current cached authorization is not valid any more.
+            Typically used if service returned HTTP 401 error code for the previous request, so token needs to be refreshed before retrying the request.
+            </summary>
+            <param name="request">
+            If not null the request to be authorized. Can be null, in this case it indicates that all cached credentials need to be refreshed.
+            If not null then only credentials for the service indicated by the request to be invalidated.
+            </param>
+            <param name="response">The response for previously sent request that has been rejected bu services because of missing authorization. Can be null.</param>
+            <returns>The task.</returns>
+        </member>
+        <member name="T:Trimble.Connect.Client.IRetryConfig">
+            <summary>
+            This interface defines the publicly available configuration parameters for retrying requests.
+            </summary>
+        </member>
+        <member name="P:Trimble.Connect.Client.IRetryConfig.BaseDelay">
+            <summary>
+            Gets the base delay value.
+            </summary>
+            <value>The value which is the base of the exponential backoff delay increase.</value>
+            <remarks>All delay values are expressed in milliseconds.</remarks>
+        </member>
+        <member name="P:Trimble.Connect.Client.IRetryConfig.MaxDelay">
+            <summary>
+            Gets the maximum delay value.
+            </summary>
+            <value>The delay cap value (delay between retry steps cannot be longer than this value).</value>
+            /// <remarks>All delay values are expressed in milliseconds.</remarks>
+        </member>
+        <member name="P:Trimble.Connect.Client.IRetryConfig.MaxErrorRetry">
+            <summary>
+            Gets the maximum number of retries.
+            If less than 1 the retry mechanism is disabled.
+            </summary>
+            <value>The maximum number of retries.</value>
+        </member>
+        <member name="T:Trimble.Connect.Client.TokenCredentialsProvider">
+            <summary>
+            The token credentials provider.
+            Holds a constant token without the possibility to refresh it.
+            </summary>
+        </member>
+        <member name="M:Trimble.Connect.Client.TokenCredentialsProvider.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Trimble.Connect.Client.TokenCredentialsProvider"/> class.
+            </summary>
+            <param name="token">The token.</param>
+        </member>
+        <member name="P:Trimble.Connect.Client.TokenCredentialsProvider.Token">
+            <summary>
+            Gets or sets the token to be attached to requests as bearer token.
+            </summary>
+            <value>The bearer token.</value>
+        </member>
+        <member name="M:Trimble.Connect.Client.TokenCredentialsProvider.AuthorizeAsync(System.Net.Http.HttpRequestMessage)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Trimble.Connect.Client.TokenCredentialsProvider.InvalidateAndAuthorizeAsync(System.Net.Http.HttpRequestMessage,System.Net.Http.HttpResponseMessage)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Trimble.Connect.Client.InvalidServiceOperationException">
+            <summary>
+            Provides additional details of an invalid operation specific to a Trimble Connect Platform Services.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.InvalidServiceOperationException.ErrorCodeUnknown">
+            <summary>
+            The error is unknown.
+            </summary>
+        </member>
+        <member name="M:Trimble.Connect.Client.InvalidServiceOperationException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Trimble.Connect.Client.InvalidServiceOperationException"/> class with a specified error code.
+            </summary>
+            <param name="errorCode">The error code returned by the service or generated by client. This is the code you can rely on for exception handling.</param>
+        </member>
+        <member name="M:Trimble.Connect.Client.InvalidServiceOperationException.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Trimble.Connect.Client.InvalidServiceOperationException"/> class with a specified error code and error message.
+            </summary>
+            <param name="errorCode">The error code returned by the service or generated by client. This is the code you can rely on for exception handling.</param>
+            <param name="message">The error message that explains the reason for the exception.</param>
+        </member>
+        <member name="M:Trimble.Connect.Client.InvalidServiceOperationException.#ctor(System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Trimble.Connect.Client.InvalidServiceOperationException"/> class with a specified
+            error code and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="errorCode">
+            The error code returned by the service or generated by client. This is the code you can rely on for exception handling.
+            </param>
+            <param name="innerException">
+            The exception that is the cause of the current exception, or a null reference if no inner exception is specified. 
+            It may especially contain the actual error message returned by the service.
+            </param>
+        </member>
+        <member name="M:Trimble.Connect.Client.InvalidServiceOperationException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Trimble.Connect.Client.InvalidServiceOperationException"/> class with a specified
+            error code, error message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="errorCode">The error code returned by the service or generated by client. This is the code you can rely on for exception handling.</param>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">
+            The exception that is the cause of the current exception, or a null reference if no inner exception is specified. 
+            It may especially contain the actual error message returned by the service.
+            </param>
+        </member>
+        <member name="P:Trimble.Connect.Client.InvalidServiceOperationException.ErrorCode">
+            <summary>
+            Gets the error code returned by the service. This is the code you can rely on for exception handling.
+            </summary>
+            <value>The error code.</value>
+        </member>
+        <member name="P:Trimble.Connect.Client.InvalidServiceOperationException.ErrorMessage">
+            <summary>
+            Gets the error message returned by the service.
+            </summary>
+            <value>The error message.</value>
+        </member>
+        <member name="P:Trimble.Connect.Client.InvalidServiceOperationException.RequestId">
+            <summary>
+            Gets the id of the request which generated the exception.
+            </summary>
+            <value>The request id.</value>
+        </member>
+        <member name="P:Trimble.Connect.Client.InvalidServiceOperationException.Retryable">
+            <summary>
+            Gets the retryable information or null if error is not retryable.
+            </summary>
+            <value>The retryable information.</value>
+        </member>
+        <member name="P:Trimble.Connect.Client.InvalidServiceOperationException.StatusCode">
+            <summary>
+            Gets the status code returned from HTTP layer. This status code is either the HttpStatusCode in the inner HttpRequestException response or
+            NavigateError Event Status Code in browser based flow (See http://msdn.microsoft.com/en-us/library/bb268233(v=vs.85).aspx).
+            You can use this code for purposes such as implementing retry logic or error investigation.
+            </summary>
+            <value>The status code.</value>
+        </member>
+        <member name="P:Trimble.Connect.Client.InvalidServiceOperationException.TokenRefreshException">
+            <summary>
+            Gets or sets the Token refresh exception.
+            </summary>
+            <value>Any exception that occurred while refreshing token.</value>
+        </member>
+        <member name="M:Trimble.Connect.Client.InvalidServiceOperationException.FromResponse(System.Net.Http.HttpResponseMessage)">
+            <summary>
+            Throws an exception for an invalid response to a web request.
+            </summary>
+            <param name="response">The response.</param>
+            <returns>A new exception instance with error message parsed from the response.</returns>
+            <exception cref="T:System.ArgumentException">If <paramref name="response"/> has a success status code.</exception>
+        </member>
+        <member name="M:Trimble.Connect.Client.InvalidServiceOperationException.GetFirstHeaderValue(System.Net.Http.Headers.HttpHeaders,System.String)">
+            <summary>
+            Gets the first http header value.
+            </summary>
+            <param name="headers">The http headers.</param>
+            <param name="key">The http header name.</param>
+            <returns>A first header value or null if header is not present.</returns>
+        </member>
+        <member name="M:Trimble.Connect.Client.InvalidServiceOperationException.BuildErrorMessage(System.Net.HttpStatusCode,System.String,System.String)">
+            <summary>
+            Creates and returns a string representation of the current exception.
+            </summary>
+            <param name="statusCode">The http status code.</param>
+            <param name="errorCode">The error code in the body.</param>
+            <param name="message">The error message in the body.</param>
+            <returns>A string representation of the current exception.</returns>
+        </member>
+        <member name="T:Trimble.Connect.Client.RetryableDetails">
+            <summary>
+            Class containing the retryable details for an <see cref="T:Trimble.Connect.Client.InvalidServiceOperationException"/>.
+            </summary>
+        </member>
+        <member name="M:Trimble.Connect.Client.RetryableDetails.#ctor(System.Boolean,System.Boolean,System.Nullable{System.Int32})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Trimble.Connect.Client.RetryableDetails"/> class with a specified error code.
+            </summary>
+            <param name="throttling">True if error related to throttling.</param>
+            <param name="invalidCredentials">True if error related to invalid credentials.</param>
+            <param name="retryAfterMilliseconds">The number of milliseconds to wait before retry as suggested by the service in the Retry-After header.</param>
+        </member>
+        <member name="P:Trimble.Connect.Client.RetryableDetails.Throttling">
+            <summary>
+            Gets a value indicating whether that this exception is a throttling exception and should be subject to congestion control throttling.
+            </summary>
+            <value>True if throttling error.</value>
+        </member>
+        <member name="P:Trimble.Connect.Client.RetryableDetails.InvalidCredentials">
+            <summary>
+            Gets a value indicating whether that this exception is invalid or missing credentials related so the credentials invalidation should be attempted.
+            </summary>
+            <value>True if error related to invalid or missing credentials.</value>
+        </member>
+        <member name="P:Trimble.Connect.Client.RetryableDetails.RetryAfterMilliseconds">
+            <summary>
+            Gets the number of milliseconds to wait before retry suggested by the service in the Retry-After header.
+            </summary>
+            <value>The retry after value suggested by service.</value>
+        </member>
+        <member name="T:Trimble.Connect.Client.FileUploadRequest">
+            <summary>
+            Descriptor for file upload request.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.FileUploadRequest.DefaultContentType">
+            <summary>
+            The default content type ('application/octet-stream').
+            </summary>
+        </member>
+        <member name="M:Trimble.Connect.Client.FileUploadRequest.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Trimble.Connect.Client.FileUploadRequest"/> class.
+            </summary>
+            <param name="path">The file path name to upload content from.</param>
+            <param name="name">The file name. If null the file name (<see cref="M:System.IO.Path.GetFileName(System.String)"/>) part of the <paramref name="path"/> is used as a name.</param>
+            <param name="contentType">The file content type (MIME). If null 'application/octet-stream' is used.</param>
+        </member>
+        <member name="M:Trimble.Connect.Client.FileUploadRequest.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Trimble.Connect.Client.FileUploadRequest"/> class.
+            </summary>
+        </member>
+        <member name="P:Trimble.Connect.Client.FileUploadRequest.Name">
+            <summary>
+            Gets or sets the file name.
+            </summary>
+            <value>The name.</value>
+        </member>
+        <member name="P:Trimble.Connect.Client.FileUploadRequest.FileId">
+            <summary>
+            Gets or sets the file identifier.
+            </summary>
+            <value>The file identifier.</value>
+            <remarks>Required for representation uploads.</remarks>
+        </member>
+        <member name="P:Trimble.Connect.Client.FileUploadRequest.VersionId">
+            <summary>
+            Gets or sets the last seen file version identifier.
+            </summary>
+            <value>The version identifier.</value>
+            <remarks>If not null is used for the concurrency check in normal upload.
+            Required when uploading model file representation.</remarks>
+        </member>
+        <member name="P:Trimble.Connect.Client.FileUploadRequest.Format">
+            <summary>
+            Gets or sets the representation's format.
+            </summary>
+            <value>The representation format.</value>
+            <remarks>Used when uploading a specific representation format of a model file.</remarks>
+        </member>
+        <member name="P:Trimble.Connect.Client.FileUploadRequest.ContentType">
+            <summary>
+            Gets or sets the file content type.
+            </summary>
+            <value>The content type.</value>
+        </member>
+        <member name="P:Trimble.Connect.Client.FileUploadRequest.Stream">
+            <summary>
+            Gets or sets the stream to read file content from.
+            </summary>
+            <value>The stream.</value>
+            <remarks>The stream is closed automatically when request is completed.</remarks>
+        </member>
+        <member name="P:Trimble.Connect.Client.FileUploadRequest.Size">
+            <summary>
+            Gets or sets the size of the file content.
+            </summary>
+            <value>File size.</value>
+        </member>
+        <member name="P:Trimble.Connect.Client.FileUploadRequest.Hash">
+            <summary>
+            Gets or sets the hash of the file.
+            </summary>
+            <value>The file hash value.</value>
+        </member>
+        <member name="P:Trimble.Connect.Client.FileUploadRequest.PathTemplate">
+            <summary>
+            Gets or sets the path template of potree (point cloud) file.
+            </summary>
+            <value>The file path template.</value>
+            <remarks>This property is used together with <see cref="P:Trimble.Connect.Client.FileUploadRequest.PathTemplate"/> for potree files.</remarks>
+        </member>
+        <member name="P:Trimble.Connect.Client.FileUploadRequest.FileSet">
+            <summary>
+             Gets or sets a value indicating whether the file type is a file set. True for potree files.
+            </summary>
+            <value>True for file set types, false otherwise.</value>
+        </member>
+        <member name="P:Trimble.Connect.Client.FileUploadRequest.Progress">
+            <summary>
+            Gets or sets the progress reporting callback.
+            </summary>
+            <value>The callback.</value>
+        </member>
+        <member name="M:Trimble.Connect.Client.FileUploadRequest.Dispose">
+            <summary>
+            The dispose method.
+            </summary>
+        </member>
+        <member name="T:Trimble.Connect.Client.Logging">
+            <summary>
+            The logging configuration.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Logging.TraceSourceName">
+            <summary>
+            The trace source name.
+            </summary>
+        </member>
+        <member name="F:Trimble.Connect.Client.Logging.Instance">
+            <summary>
+            The Logger instance.
+            </summary>
+        </member>
+        <member name="P:Trimble.Connect.Client.Logging.Logger">
+            <summary>
+            Gets the singleton logger instance.
+            </summary>
+        </member>
+        <member name="T:Trimble.Connect.Client.IModel">
+            <summary>
+            The public interface that all model classes must implement.
+            </summary>
+        </member>
+        <member name="P:Trimble.Connect.Client.IModel.AdditionalProperties">
+            <summary>
+            Gets the additional properties.
+            </summary>
+            <value>The additional properties.</value>
+            <remarks>These additional properties can be used to send and receive data from the service
+            which is not yet directly supported by this .NET SDK but is already supported by the service.</remarks>
+        </member>
+        <member name="T:Trimble.Connect.Client.IRequest">
+            <summary>
+            The public interface that all request classes must implement.
+            </summary>
+        </member>
+        <member name="P:Trimble.Connect.Client.IRequest.URI">
+            <summary>
+            Gets the request URI.
+            </summary>
+            <value>The request URI.</value>
+            <remarks>It can either be an absolute URI or a relative URI.</remarks>
+        </member>
+        <member name="P:Trimble.Connect.Client.IRequest.Method">
+            <summary>
+            Gets the HTTP method to use to send the request.
+            </summary>
+            <value>The HTTP method.</value>
+        </member>
+        <member name="P:Trimble.Connect.Client.IRequest.ContentType">
+            <summary>
+            Gets the request content type.
+            </summary>
+            <value>The request content type.</value>
+        </member>
+        <member name="P:Trimble.Connect.Client.IRequest.AcceptedResponseContentTypes">
+            <summary>
+            Gets the accepted response content types.
+            </summary>
+            <value>The accepted response content types.</value>
+        </member>
+        <member name="P:Trimble.Connect.Client.IRequest.AdditionalQueryParameters">
+            <summary>
+            Gets the additional query parameters.
+            </summary>
+            <value>The additional query parameters. Add here any query parameters that are not yet directly supported by this .NET SDK but are already supported by the service.</value>
+        </member>
+        <member name="M:Trimble.Connect.Client.IRequest.Validate">
+            <summary>
+            Checks the content of the request and throws exception if any mandatory content is missing or invalid.
+            </summary>
+            <exception cref="T:System.IO.InvalidDataException">Thrown if any mandatory content is missing or is invalid.</exception>
+        </member>
+        <member name="M:Trimble.Connect.Client.IRequest.Serialize">
+            <summary>
+            Serialize the request content.
+            </summary>
+            <returns>The serialized request content.</returns>
+        </member>
+        <member name="T:Trimble.Connect.Client.Models.Region">
+            <summary>
+            The region (pod) descriptor.
+            Project data can be hosted in one of multiple locations around the world. 
+            Using the project location property,
+            a client app can determine the origin/hostname which API calls to that project can be made.
+            </summary>
+        </member>
+        <member name="M:Trimble.Connect.Client.Models.Region.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Trimble.Connect.Client.Models.Region"/> class.
+            </summary>
+        </member>
+        <member name="P:Trimble.Connect.Client.Models.Region.IsMaster">
+            <summary>
+            Gets or sets a value indicating whether this region is a master pod.
+            </summary>
+            <value>True if the region is a master shard.</value>
+        </member>
+        <member name="P:Trimble.Connect.Client.Models.Region.Location">
+            <summary>
+            Gets or sets the location (name) of the pod.
+            </summary>
+            <value>The location of the pod.</value>
+        </member>
+        <member name="P:Trimble.Connect.Client.Models.Region.Origin">
+            <summary>
+            Gets or sets the origin of the pod.
+            </summary>
+            <value>The origin.</value>
+            <remarks>The origin is a host name prefixed with back slashes.</remarks>
+        </member>
+        <member name="P:Trimble.Connect.Client.Models.Region.ObjectSyncApi">
+            <summary>
+             Gets or sets the value of object sync helper service endpoint base uri.
+            </summary>
+            <value>The object sync helper service endpoint base uri.</value>
+        </member>
+        <member name="P:Trimble.Connect.Client.Models.Region.OrgApi">
+            <summary>
+            Gets or sets the value of organizer service API endpoint base uri.
+            </summary>
+            <value>The organizer service API endpoint base uri.</value>
+        </member>
+        <member name="P:Trimble.Connect.Client.Models.Region.PSetApi">
+            <summary>
+            Gets or sets the value of property set API endpoint base uri.
+            </summary>
+            <value>The property set API endpoint base uri.</value>
+        </member>
+        <member name="P:Trimble.Connect.Client.Models.Region.TcpsApi">
+            <summary>
+            Gets the Trimble connect platform services API endpoint base uri.
+            </summary>
+            <value>The Trimble connect platform services API endpoint base uri.</value>
+        </member>
+        <member name="P:Trimble.Connect.Client.Models.Region.AdditionalProperties">
+            <summary>
+            Gets or sets the additional properties to exchange with server.
+            </summary>
+            <value>The additional properties to exchange with server.</value>
+        </member>
+        <member name="T:System.Net.Http.HttpClientNDJsonExtensions">
+            <summary>
+            Extension methods for <see cref="T:System.Net.Http.HttpClient"/>.
+            </summary>
+        </member>
+        <member name="F:System.Net.Http.HttpClientNDJsonExtensions.DefaultMaxObjectCountInChunk">
+            <summary>
+            The default maximum number of objects in a deserialized chunk.
+            </summary>
+        </member>
+        <member name="F:System.Net.Http.HttpClientNDJsonExtensions.Serializer">
+            <summary>
+            The serializer.
+            </summary>
+        </member>
+        <member name="M:System.Net.Http.HttpClientNDJsonExtensions.GetNDJsonAsync``1(System.Net.Http.HttpClient,System.String,System.Action{System.Collections.Generic.IEnumerable{``0}},System.Int32,System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Sends HTTP GET request and reads the response as NDJSON collection of objects.
+            </summary>
+            <typeparam name="T">The type of the objects to get.</typeparam>
+            <param name="client">The <see cref="T:System.Net.Http.HttpClient"/> object on which the method is called.</param>
+            <param name="uri">The URI From which to get the objects.</param>
+            <param name="chunkHandler">A handler function which is called for each chunk of objects.</param>
+            <param name="chunkSize">The maximum number of objects in a single chunk.</param>
+            <param name="readTimeout">
+            The number of milliseconds before the reading times out.
+            The default value is 300,000 milliseconds (5 minutes).
+            The timeout is monitored not for the whole operation but for the activity in the stream.
+            If there is no activity for the specified period of time the operation is cancelled.
+            -1 means infinite timeout.
+            </param>
+            <param name="bufferSize">The size of the buffer. Value must be greater than zero. The default size is 80KB.</param> 
+            <param name="cancellationToken">The optional cancellation token.</param>
+            <returns>Does not return anything.</returns>
+            <exception cref="T:System.InvalidOperationException">Thrown when a problem occurs during sending the request.</exception>
+            <exception cref="T:Trimble.Connect.Client.InvalidServiceOperationException">Thrown when the service returns an error. The exception details describe the service error.</exception>
+            <exception cref="T:System.OperationCanceledException">Thrown when cancellation was requested.</exception>
+            <exception cref="T:System.ArgumentNullException">Thrown when required argument is null.</exception>
+        </member>
+        <member name="M:System.Net.Http.HttpClientNDJsonExtensions.ReadAsNDJsonAsync``1(System.Net.Http.HttpContent,System.Action{System.Collections.Generic.IEnumerable{``0}},System.Int32,System.Int32,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Reads the http content as NDJSON objects.
+            </summary>
+            <typeparam name="T">The type of the objects to get.</typeparam>
+            <param name="content">The <see cref="T:System.Net.Http.HttpContent"/> object on which the method is called.</param>
+            <param name="chunkHandler">A handler function which is called for each chunk of objects.</param>
+            <param name="chunkSize">The maximum number of objects in a single chunk. Default is 200.</param>
+            <param name="readTimeout">
+            The number of milliseconds before the reading times out.
+            The default value is 300,000 milliseconds (5 minutes).
+            The timeout is monitored not for the whole operation but for the activity in the stream.
+            If there is no activity for the specified period of time the operation is cancelled.
+            -1 means infinite timeout.
+            </param>
+            <param name="bufferSize">The size of the buffer. Value must be greater than zero. The default size is 80KB.</param> 
+            <param name="cancellationToken">The optional cancellation token.</param>
+            <returns>Does not return anything.</returns>
+            <exception cref="T:System.InvalidOperationException">Thrown when a problem occurs during sending the request.</exception>
+            <exception cref="T:Trimble.Connect.Client.InvalidServiceOperationException">Thrown when the service returns an error. The exception details describe the service error.</exception>
+            <exception cref="T:System.OperationCanceledException">Thrown when cancellation was requested.</exception>
+            <exception cref="T:System.ArgumentNullException">Thrown when required argument is null.</exception>
+        </member>
+        <member name="M:System.Net.Http.HttpClientNDJsonExtensions.PutAsNDJsonAsync``1(System.Net.Http.HttpClient,System.String,System.Collections.Generic.IEnumerable{``0},System.Int32,System.Int32,System.Action{System.Net.Http.Handlers.HttpProgressEventArgs},System.Threading.CancellationToken)">
+            <summary>
+            Sends a collection of items as NDJSON content with HTTP PUT.
+            </summary>
+            <typeparam name="T">The type of each object to be uploaded.</typeparam>
+            <param name="client">The <see cref="T:System.Net.Http.HttpClient"/> object on which the method is called.</param>
+            <param name="uri">The URI to upload the change set contents to.</param>
+            <param name="items">The collection of items to be uploaded as NDJSON content.</param>
+            <param name="writeTimeout">
+            The number of milliseconds before the writing times out.
+            The default value is 300,000 milliseconds (5 minutes).
+            The timeout is monitored not for the whole operation but for the activity in the stream.
+            If there is no activity for the specified period of time the operation is cancelled.
+            -1 means infinite timeout.
+            </param>
+            <param name="bufferSize">The size of the buffer. Value must be greater than zero. The default size is 80KB.</param> 
+            <param name="progress">The the progress reporting callback.</param>
+            <param name="cancellationToken">The optional cancellation token.</param>
+            <returns>The http response if it is successful, or an exception is thrown.</returns>
+            <exception cref="T:System.InvalidOperationException">Thrown when a problem occurs during sending the request.</exception>
+            <exception cref="T:Trimble.Connect.Client.InvalidServiceOperationException">Thrown when the service returns an error. The exception details describe the service error.</exception>
+            <exception cref="T:System.ArgumentNullException">Thrown when the required input parameter is missing.</exception>
+            <exception cref="T:System.OperationCanceledException">Thrown when cancellation was requested.</exception>
+            <seealso ref="https://app.swaggerhub.com/apis/Trimble-Connect/org-prod/v1#/default/post_forests__forestId__trees__treeId__changeset"/>
+        </member>
+        <member name="T:System.Net.Http.HttpHeaderExtensions">
+            <summary>
+            Extension methods for HTTP content headers collection.
+            </summary>
+        </member>
+        <member name="F:System.Net.Http.HttpHeaderExtensions.SanitiseUserAgentPattern">
+            <summary>
+            The pattern for UserAgent header entry sanitization.
+            </summary>
+        </member>
+        <member name="M:System.Net.Http.HttpHeaderExtensions.CreateProductInfoHeader(System.String,System.String)">
+            <summary>
+            Creates the <see cref="T:System.Net.Http.Headers.ProductInfoHeaderValue"/> with given values after sanitization.
+            </summary>
+            <param name="productName">Name of the product to be used in the user agent.</param>
+            <param name="version">Version of the product to be used in the user agent.</param>
+            <returns>The info entry.</returns>
+        </member>
+        <member name="M:System.Net.Http.HttpHeaderExtensions.CopyTo(System.Net.Http.Headers.HttpContentHeaders,System.Net.Http.Headers.HttpContentHeaders)">
+            <summary>
+            Copies HTTP headers to other collection.
+            </summary>
+            <param name="from">The source header collection.</param>
+            <param name="to">The target headers collection.</param>
+        </member>
+        <member name="M:System.Net.Http.HttpHeaderExtensions.AcceptJson(System.Net.Http.Headers.HttpRequestHeaders)">
+            <summary>
+            Append headers.
+            </summary>
+            <param name="request">The request.</param>
+        </member>
+        <member name="M:System.Net.Http.HttpHeaderExtensions.AcceptNDJson(System.Net.Http.Headers.HttpRequestHeaders)">
+            <summary>
+            Append headers.
+            </summary>
+            <param name="request">The request.</param>
+        </member>
+        <member name="M:System.Net.Http.HttpHeaderExtensions.AcceptContentType(System.Net.Http.Headers.HttpRequestHeaders,System.String)">
+            <summary>
+            Append headers.
+            </summary>
+            <param name="request">The request.</param>
+            <param name="contentType">The content type.</param>
+        </member>
+        <member name="M:System.Net.Http.HttpHeaderExtensions.IfMatch(System.Net.Http.Headers.HttpRequestHeaders,System.String)">
+            <summary>
+            Appends If-Match HTTP header.
+            </summary>
+            <param name="request">The request.</param>
+            <param name="etag">The entity tag.</param>
+        </member>
+        <member name="M:System.Net.Http.HttpHeaderExtensions.IfNoneMatch(System.Net.Http.Headers.HttpRequestHeaders,System.String)">
+            <summary>
+            Appends If-None-Match HTTP header.
+            </summary>
+            <param name="request">The request.</param>
+            <param name="etag">The entity tag.</param>
+        </member>
+        <member name="M:System.Net.Http.HttpHeaderExtensions.IfModifiedSince(System.Net.Http.Headers.HttpRequestHeaders,System.Nullable{System.DateTimeOffset})">
+            <summary>
+            Append headers.
+            </summary>
+            <param name="request">The request.</param>
+            <param name="after">Optional parameter to ask for for content modified after certain point in time.</param>
+        </member>
+        <member name="M:System.Net.Http.HttpHeaderExtensions.AppendPagedRange(System.Net.Http.Headers.HttpRequestHeaders,System.Nullable{System.Int64},System.Nullable{System.Int64})">
+            <summary>
+            Append range headers for pages items response.
+            </summary>
+            <param name="request">The request.</param>
+            <param name="batchSize">Optional parameter to ask for a chunked response.</param>
+            <param name="from">Optional parameter to ask to return a collection from certain point.</param>
+        </member>
+        <member name="M:System.Net.Http.HttpHeaderExtensions.AppendRange(System.Net.Http.Headers.HttpRequestHeaders,System.Nullable{System.Int64},System.Nullable{System.Int64})">
+            <summary>
+            Append range information to request header.
+            </summary>
+            <param name="request">The request.</param>
+            <param name="from">The position at which to start sending data.</param>
+            <param name="to">The position at which to stop sending data.</param>
+        </member>
+        <member name="M:System.Net.Http.HttpHeaderExtensions.SanitiseUserAgentInfoEntry(System.String)">
+            <summary>
+            Cleaning unsupported characters from user agent header strings.
+            </summary>
+            <param name="entry">The entry.</param>
+            <returns>The sanitized string.</returns>
+        </member>
+        <member name="T:System.Net.Http.HttpRequestMessageExtensions">
+            <summary>
+            Extension methods to allow strongly typed objects to be read from <see cref="T:System.Net.Http.HttpRequestMessage"/> instances.
+            </summary>
+        </member>
+        <member name="M:System.Net.Http.HttpRequestMessageExtensions.IsBuffered(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Checks the HTTP request's content to determine if it's buffered or streamed content.
+            </summary>
+            <param name="request">The <see cref="T:System.Net.Http.HttpRequestMessage"/>needs to be sent.</param>
+            <returns>True if request is fully buffered.</returns>
+        </member>
+    </members>
+</doc>
