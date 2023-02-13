@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Trimble.Identity.OAuth.AuthCode</name>
+    </assembly>
+    <members>
+        <member name="T:Trimble.Identity.OAuth.AuthCode.AuthCodeCredentialsProvider">
+            <summary>
+            The OAuth2 authorization code grant flow interactive credentials provider.
+            This provider is expected to be used in interactive desktop and mobile apps.
+            It will bring up a web browser window for the user to enter credentials if authentication context does not have a token cached already (<seealso cref="P:Trimble.Identity.AuthenticationContext.TokenCache"/>).
+            The UI behavior can be controlled with the <see cref="P:Trimble.Identity.OAuth.AuthCode.AuthCodeCredentialsProvider.AuthenticationRequest"/> property.
+            </summary>
+        </member>
+        <member name="F:Trimble.Identity.OAuth.AuthCode.AuthCodeCredentialsProvider.authContext">
+            <summary>
+            The authentication context.
+            </summary>
+        </member>
+        <member name="M:Trimble.Identity.OAuth.AuthCode.AuthCodeCredentialsProvider.#ctor(Trimble.Identity.AuthenticationContext)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Trimble.Identity.OAuth.AuthCode.AuthCodeCredentialsProvider"/> class.
+            </summary>
+            <param name="authContext">The authentication context.</param>
+            <remarks>
+            The AuthenticationRequest and Scope will be set inside the constructor, if not passed explicitly.
+            </remarks>
+        </member>
+        <member name="P:Trimble.Identity.OAuth.AuthCode.AuthCodeCredentialsProvider.AuthenticationRequest">
+            <summary>
+            Gets or sets the authentication request parameters that control the UI behavior to ask for user credentials.
+            </summary>
+            <value>Authentication request parameters.</value>
+        </member>
+        <member name="M:Trimble.Identity.OAuth.AuthCode.AuthCodeCredentialsProvider.AuthorizeAsync(System.Net.Http.HttpRequestMessage)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Trimble.Identity.OAuth.AuthCode.AuthCodeCredentialsProvider.InvalidateAndAuthorizeAsync(System.Net.Http.HttpRequestMessage,System.Net.Http.HttpResponseMessage)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Trimble.Identity.OAuth.AuthCode.AuthCodeCredentialsProvider.SetScope">
+            <summary>
+            Sets the AuthenticationRequest and Scope, if not passed explicitly.
+            </summary>
+        </member>
+        <member name="T:Trimble.Identity.OAuth.AuthCode.CustomTokenCredentialsProvider">
+            <summary>
+            The custom token credentials provider.
+            Provides possibility to acquire token interactively or use existing tokens.
+            </summary>
+        </member>
+        <member name="F:Trimble.Identity.OAuth.AuthCode.CustomTokenCredentialsProvider.authContext">
+            <summary>
+            The authentication context.
+            </summary>
+        </member>
+        <member name="M:Trimble.Identity.OAuth.AuthCode.CustomTokenCredentialsProvider.#ctor(Trimble.Identity.AuthenticationContext,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Trimble.Identity.OAuth.AuthCode.CustomTokenCredentialsProvider"/> class.
+            </summary>
+            <param name="authContext">The authentication context.</param>
+            <remarks>
+            The AuthenticationRequest and Scope will be set inside the constructor, if not passed explicitly.
+            </remarks>
+            <param name="accessToken">The access token if client already has it.</param>
+            <param name="refreshToken">The refresh token if client already has it.</param>
+        </member>
+        <member name="P:Trimble.Identity.OAuth.AuthCode.CustomTokenCredentialsProvider.AuthenticationRequest">
+            <summary>
+            Gets or sets the authentication request parameters that control the UI behavior to ask for user credentials.
+            </summary>
+            <value>Authentication request parameters.</value>
+        </member>
+        <member name="P:Trimble.Identity.OAuth.AuthCode.CustomTokenCredentialsProvider.AccessToken">
+            <summary>
+            Gets the access token.
+            </summary>
+            <value>The access token.</value>
+        </member>
+        <member name="P:Trimble.Identity.OAuth.AuthCode.CustomTokenCredentialsProvider.RefreshToken">
+            <summary>
+            Gets the refresh token.
+            </summary>
+            <value>The refresh token.</value>
+        </member>
+        <member name="M:Trimble.Identity.OAuth.AuthCode.CustomTokenCredentialsProvider.AuthorizeAsync(System.Net.Http.HttpRequestMessage)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Trimble.Identity.OAuth.AuthCode.CustomTokenCredentialsProvider.InvalidateAndAuthorizeAsync(System.Net.Http.HttpRequestMessage,System.Net.Http.HttpResponseMessage)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Trimble.Identity.OAuth.AuthCode.CustomTokenCredentialsProvider.SetScope">
+            <summary>
+            Sets the AuthenticationRequest and Scope, if not passed explicitly.
+            </summary>
+        </member>
+    </members>
+</doc>
